@@ -1,4 +1,4 @@
-@extends('layouts.auth')
+@extends('layouts.aut   h')
 
 @section('htmlheader_title')
     Password reset

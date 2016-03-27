@@ -19,12 +19,15 @@ class CreateTableExperiencia extends Migration
             $table->string('cargo'); //cargo
             $table->boolean('publica')->default(false);
             $table->integer('ciudad')->unsigned(); //llave ciudades
+            $table->string('telefono')->nullable(); //llave ciudades
             $table->date('fechaingreso');//fecha de ultimo periodo cursado
-            $table->date('fechaterminado');//fecha de ultimo periodo cursado
-            $table->integer('tiempolaborado');//numero de meses laborados
+            $table->date('fechasalida')->nullable();//fecha de ultimo periodo cursado
+            $table->integer('meseslaborados')->nullable();//numero de meses laborados
+            $table->text('funciones')->nullable(); //funciones que desempeño
             $table->boolean('docente')->default(false);//esta experiencia es docente?
-            $table->string('archivo');//evidencia
+            $table->string('archivo')->nullable();//evidencia
             $table->foreign('user')->references('id')->on('users');
+            $table->foreign('ciudad')->references('id')->on('cities');
             $table->timestamps();
 
         });

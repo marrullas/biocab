@@ -19,11 +19,11 @@ class AcachaAdminLTELaravelTest extends TestCase
      * @return void
      */
     public function testLandingPage()
-    {
+    {/*
         $this->visit('/')
              ->see('Acacha')
              ->see('adminlte-laravel')
-             ->see('Pratt');
+             ->see('Pratt');*/
     }
 
     /**
@@ -39,7 +39,7 @@ class AcachaAdminLTELaravelTest extends TestCase
             ->visit('/')
             ->see('Acacha')
             ->see('adminlte-laravel')
-            ->see('Pratt')
+            //->see('Pratt')
             ->see($user->name);
     }
 
@@ -51,7 +51,7 @@ class AcachaAdminLTELaravelTest extends TestCase
     public function testLoginPage()
     {
         $this->visit('/login')
-            ->see('Sign in to start your session');
+            ->see('Digita tus datos para iniciar sesión');
     }
 
     /**
@@ -66,7 +66,7 @@ class AcachaAdminLTELaravelTest extends TestCase
         $this->visit('/login')
             ->type($user->email, 'email')
             ->type('passw0RD', 'password')
-            ->press('Sign In')
+            ->press('Ingresar')
             ->seePageIs('/home')
             ->see($user->name);
     }
@@ -79,7 +79,7 @@ class AcachaAdminLTELaravelTest extends TestCase
     public function testLoginRequiredFields()
     {
         $this->visit('/login')
-            ->press('Sign In')
+            ->press('Ingresar')
             ->see('The email field is required')
             ->see('The password field is required');
     }
@@ -92,7 +92,7 @@ class AcachaAdminLTELaravelTest extends TestCase
     public function testRegisterPage()
     {
         $this->visit('/register')
-            ->see('Register a new membership');
+            ->see('Registrarse por primera vez');
     }
 
     /**
@@ -142,7 +142,7 @@ class AcachaAdminLTELaravelTest extends TestCase
 
         $this->actingAs($user)
             ->visit('/logout')
-            ->seePageIs('/');
+            ->seePageIs('/login');
     }
 
     /**
@@ -170,7 +170,7 @@ class AcachaAdminLTELaravelTest extends TestCase
 //            ->check('terms') TODO
             ->type('passw0RD', 'password')
             ->type('passw0RD', 'password_confirmation')
-            ->press('Register')
+            ->press('Registrar')
             ->seePageIs('/home')
             ->seeInDatabase('users', ['email' => 'sergiturbadenas@gmail.com',
                                       'name'  => 'Sergi Tur Badenas']);
@@ -185,7 +185,7 @@ class AcachaAdminLTELaravelTest extends TestCase
     public function testRequiredFieldsOnRegistrationPage()
     {
         $this->visit('/register')
-            ->press('Register')
+            ->press('Registrar')
             ->see('The name field is required')
             ->see('The email field is required')
             ->see('The password field is required');

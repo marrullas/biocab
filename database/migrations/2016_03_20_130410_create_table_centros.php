@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableDpto extends Migration
+class CreateTableCentros extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,10 @@ class CreateTableDpto extends Migration
      */
     public function up()
     {
-        Schema::create('dpto', function (Blueprint $table) {
+        Schema::create('centros', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
-            $table->string('codigo');
-            $table->integer('pais')->unsigned();//llave a la tabla pais
+            $table->string('descripcion');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateTableDpto extends Migration
      */
     public function down()
     {
-        Schema::drop('dpto');
+        Schema::drop('centros');
     }
 }

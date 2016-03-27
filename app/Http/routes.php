@@ -10,10 +10,13 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
-Route::get('/', function () {
-    return view('home');
-});
+/*Route::get('/', function () {
+    return view('/home');
+});*/
+Route::get('bio/api/getRegions', 'BioController@getRegion');
+/*Route::get('bio/api/getRegions', function($id) {
+    dd(\App\countrie::whereRegion(1));
+});*/
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +29,19 @@ Route::get('/', function () {
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    //
+Route::group(['middleware' => 'web'], function () {
+    Route::auth();
+
+    Route::get('/home', 'HomeController@index');
+    Route::get('/','HomeController@index');
+    Route::resource('bio', 'BioController');
+    Route::resource('profile', 'ProfileController');
+    Route::resource('skill', 'ExperienciaController');
+    Route::resource('education', 'FormacionController');
+    //Route::get('profile', 'ProfileController@index');
+    Route::get('bio/api/getRegions', 'BioController@getRegion');
+    Route::get('bio/api/getCities', 'BioController@getCitie');
+/*    Route::get('/', function () {
+        return view('welcome');
+    });*/
 });

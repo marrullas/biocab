@@ -16,16 +16,19 @@ class CreateTableFormacion extends Migration
             $table->increments('id');
             $table->integer('user')->unsigned();//llave usuario
             $table->string('titulo');
+            $table->text('descripcion')->nullable();
             $table->integer('ciudad')->unsigned(); //llave ciudades
             $table->boolean('terminado')->default(false);
-            $table->date('fechaterminado');//fecha de ultimo periodo cursado
+            $table->date('fechaterminado')->nullable();//fecha de ultimo periodo cursado
             $table->string('institucion');//nombre de la institucion de la formacion
             $table->boolean('virtual')->default(false);
             $table->boolean('distacia')->default(false);
-            $table->string('archivo');//evidencia
             $table->boolean('pedagogia')->default(false);
             $table->boolean('ingles')->default(false);
+            $table->string('archivo')->nullable();//evidencia
             $table->foreign('user')->references('id')->on('users');
+            $table->foreign('ciudad')->references('id')->on('cities');
+
             $table->timestamps();
         });
     }

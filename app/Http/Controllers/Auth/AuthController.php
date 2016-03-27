@@ -48,11 +48,14 @@ class AuthController extends Controller
      */
     protected function validator(array $data)
     {
+        $messages = [
+            'email.regex' => 'Revise el e-mail debe ser el correo misena!',
+        ];
         return Validator::make($data, [
             'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
+            'email' => 'required|email|regex:/(.*)misena.edu\.co$/i|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
-        ]);
+        ],$messages);
     }
 
     /**
@@ -67,6 +70,8 @@ class AuthController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'tipousuario' => 1,
+            'imagen'=>'default-user.jpg',
         ]);
     }
 }

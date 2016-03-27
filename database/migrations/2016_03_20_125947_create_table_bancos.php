@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTablePais extends Migration
+class CreateTableBancos extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,10 @@ class CreateTablePais extends Migration
      */
     public function up()
     {
-        Schema::create('pais', function (Blueprint $table) {
+        Schema::create('bancos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
-            $table->string('codigo');
+            $table->string('descripcion');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class CreateTablePais extends Migration
      */
     public function down()
     {
-        Schema::drop('pais');
+        Schema::drop('bancos');
     }
 }

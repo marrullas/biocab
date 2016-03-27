@@ -47,9 +47,9 @@ desired effect
             @yield('main-content')
         </section><!-- /.content -->
     </div><!-- /.content-wrapper -->
-
+    @if (! Auth::guest())
     @include('layouts.partials.controlsidebar')
-
+    @endif
     @include('layouts.partials.footer')
 
 </div><!-- ./wrapper -->

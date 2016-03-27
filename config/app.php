@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'url' => 'http://localhost',
+    'url' => 'http://bio.app',
 
     /*
     |--------------------------------------------------------------------------
@@ -157,9 +157,14 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         /*
+         * clases para formularios
+         */
+        Collective\Html\HtmlServiceProvider::class,
+
+        /*
          * Acacha AdminLTE template provider
          */
-        Acacha\AdminLTETemplateLaravel\Providers\AdminLTETemplateServiceProvider::class,
+        //Acacha\AdminLTETemplateLaravel\Providers\AdminLTETemplateServiceProvider::class,
     ],
 
     /*
@@ -206,6 +211,12 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
 
+
+        /*
+         * alias para formularios
+         */
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
         /*
          * Acacha AdminLTE template alias
          */
