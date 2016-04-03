@@ -13,7 +13,7 @@ class DependenciaTableSeeder extends Seeder
     public function run()
     {
         //
-        Dependencia::create(['nombre'=>'Adminitración','descripcion'=>'Area administrativa']);
+        Dependencia::create(['nombre'=>'Administración','descripcion'=>'Area administrativa']);
         Dependencia::create(['nombre'=>'Compras','descripcion'=>'Area compras']);
         Dependencia::create(['nombre'=>'Bienestar aprendiz','descripcion'=>'Area Bienestar']);
         Dependencia::create(['nombre'=>'Formación titulada','descripcion'=>'Area Formación titulada']);

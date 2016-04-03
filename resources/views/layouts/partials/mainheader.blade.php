@@ -20,7 +20,7 @@
             <ul class="nav navbar-nav">
                 @if (! Auth::guest())
                 <!-- Messages: style can be found in dropdown.less-->
-                <li class="dropdown messages-menu">
+               {{-- <li class="dropdown messages-menu">
                     <!-- Menu toggle button -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-envelope-o"></i>
@@ -108,7 +108,7 @@
                             <a href="#">View all tasks</a>
                         </li>
                     </ul>
-                </li>
+                </li>--}}
                 @endif
                 @if (Auth::guest())
                     <li><a href="{{ url('/login') }}">Iniciar sesión</a></li>
@@ -129,11 +129,11 @@
                                 <img src="{{ asset('/images/catalog/'.Auth::user()->imagen) }}" class="img-circle" alt="User Image" />
                                 <p>
                                     {{ Auth::user()->name }}
-                                    <small>Registrado desde: </small>
+                                    <small>Registrado desde: </small> {{Auth::user()->created_at}}
                                 </p>
                             </li>
                             <!-- Menu Body -->
-                            <li class="user-body">
+{{--                            <li class="user-body">
                                 <div class="col-xs-4 text-center">
                                     <a href="#">Followers</a>
                                 </div>
@@ -143,14 +143,14 @@
                                 <div class="col-xs-4 text-center">
                                     <a href="#">Friends</a>
                                 </div>
-                            </li>
+                            </li>--}}
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="{{ url('/profile') }}" class="btn btn-default btn-flat">Profile</a>
+                                    <a href="{{ url('/profile') }}" class="btn btn-default btn-flat">Perfil</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="{{ url('/logout') }}" class="btn btn-default btn-flat">Sign out</a>
+                                    <a href="{{ url('/logout') }}" class="btn btn-default btn-flat">Salir</a>
                                 </div>
                             </li>
                         </ul>

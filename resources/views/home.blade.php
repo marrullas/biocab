@@ -15,7 +15,7 @@
 					<div class="panel-heading">Registro de datos</div>
 
 					<div class="panel-body">
-						<iframe width="560" height="315" src="https://www.youtube.com/embed/hM9APfmYOfI" frameborder="0" allowfullscreen></iframe>
+						<iframe width="560" height="315" src="https://www.youtube.com/embed/Tq0zM8uR0-k" frameborder="0" allowfullscreen></iframe>
 					</div>
 				</div>
 			</div>

@@ -9,6 +9,7 @@ use App\Citie;
 use App\countrie;
 use App\Dependencia;
 use App\region;
+use App\User;
 use Illuminate\Auth\Access\Response;
 use Illuminate\Http\Request;
 
@@ -31,8 +32,18 @@ class BioController extends Controller
     public function index()
     {
         //
+
+        $activartab = true;
         $bio = Bio::where('user','=',Auth::user()->id)->count();
-        return view('profile.bio',compact('bio'));
+        if($bio != 0) {
+            $bio = Bio::where('user', '=', Auth::user()->id)->get()->first();
+            //dd($bio->identificacion);
+            return view('profile.bio', compact('bio', 'activartab'));
+        }
+        else {
+            //dd($bio);
+            return redirect()->action('BioController@create');
+        }
 
     }
 

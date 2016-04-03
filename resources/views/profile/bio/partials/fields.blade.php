@@ -16,7 +16,7 @@
                             @if(isset($bio))
                                 @if($bio['imagendocumento'])
                             <div>
-                                <a href="{{asset('/images/docs/'.$bio['imagendocumento'])}}" class="btn btn-success" target="_blank"> Ver archivo</a>
+                                <a href="{{asset('/images/docs/'.$bio['imagendocumento'])}}" class="btn btn-sm btn-success" target="_blank"> Ver archivo</a>
                             </div>
                                     @endif
                             @endif
@@ -60,7 +60,7 @@
                                 {{ Form::select('sexo', ['M'=>'Masculino','F'=>'Femenino','Otro'=>'Otro'],null,['class' => 'form-control','id'=>'sexo', 'placeholder'=>'seleccione sexo']) }}                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputName" class="control-label">Fecha de nacimiento</label>
+                            <label for="inputName" class="control-label">Fecha de nacimiento (dd/mm/aaaa) Ej. (10/03/1970)</label>
                             <div>
                                 {!! Form::date('fechanacimiento', null, [ 'class' => 'form-control', 'placeholder' => 'Fecha Nacimiento','id'=>'fechanacimiento' ] ) !!}
                             </div>
@@ -172,7 +172,11 @@
                             <div>
                                 <div class="checkbox">
                                     <label>
-                                        {{ Form::checkbox('ahorros', 1, true) }} Ahorros
+                                        @if(isset($bio))
+                                            {{ Form::checkbox('ahorros', $bio['ahorros']) }} Ahorros
+                                        @else
+                                            {{ Form::checkbox('ahorros') }} Ahorros
+                                        @endif
                                     </label>
                                 </div>
                             </div>

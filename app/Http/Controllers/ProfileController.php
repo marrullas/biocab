@@ -37,8 +37,12 @@ class ProfileController extends Controller
         //dd(Auth::user()->bio);
         $skills = Experiencia::where('user','=',Auth::user()->id)->get();
         $educas = Formacion::where('user','=',Auth::user()->id)->get();
+        $bio = Bio::where('user','=',Auth::user()->id)->count();
+        if($bio != 0) {
+            $bio = Bio::where('user', '=', Auth::user()->id)->get()->first();
+        }
         $activartab = false;
-        return view('profile.home',compact('skills','educas','activartab'));
+        return view('profile.home',compact('skills','educas','bio','activartab'));
     }
 
     public function edit($id)

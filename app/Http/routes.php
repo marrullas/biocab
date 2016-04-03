@@ -32,7 +32,8 @@ Route::get('bio/api/getRegions', 'BioController@getRegion');
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
-    Route::get('/home', 'HomeController@index');
+    //Route::get('/home', 'HomeController@index');
+    Route::get('/home', 'ProfileController@index');
     Route::get('/','HomeController@index');
     Route::resource('bio', 'BioController');
     Route::resource('profile', 'ProfileController');
