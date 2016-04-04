@@ -35,13 +35,14 @@
                     </div>
 
                         <div class="col-xs-12 col-sm-4 emphasis">
-                            @if($bio->count() == 0)
+                            @if(count($bio) == 0)
                                 <a href="{{url('bio/create')}}" class="btn btn-success btn-block"><span class="fa fa-plus-circle"></span> Ingresar datos </a>
                             @endif
                         </div>
                         <div class="col-xs-12 col-sm-4 emphasis">
-
+                            @if(count($bio) != 0)
                             <a href="{{url('bio/'.Auth::user()->id.'/edit')}}" class="btn btn-danger btn-block"><span class="fa fa-user"></span> Editar Datos </a>
+                            @endif
                         </div>
 
 

@@ -34,9 +34,10 @@ class BioController extends Controller
         //
 
         $activartab = true;
-        $bio = Bio::where('user','=',Auth::user()->id)->count();
-        if($bio != 0) {
-            $bio = Bio::where('user', '=', Auth::user()->id)->get()->first();
+        //$bio = Bio::where('user','=',Auth::user()->id)->count();
+        $bio = Bio::where('user','=',Auth::user()->id)->get()->first();
+        if($bio == null) {
+            $bio = array();
             //dd($bio->identificacion);
             return view('profile.bio', compact('bio', 'activartab'));
         }
@@ -55,12 +56,16 @@ class BioController extends Controller
     public function create()
     {
         //
-        $dependencias = Dependencia::lists('nombre','id')->all();
-        $bancos = Banco::lists('nombre','id')->all();
-        $centros = Centro::lists('nombre','id')->all();
-        $countries = countrie::lists('name','id')->all();
-        //$countries = countrie::orderBy('name', 'asc')->get();
-        return view('profile.bio.create',compact('countries','dependencias','bancos','centros'));
+        $user = Bio::where('user','=',Auth::user()->id)->get()->first();
+        if(count($user=!0)) {
+            $dependencias = Dependencia::lists('nombre', 'id')->all();
+            $bancos = Banco::lists('nombre', 'id')->all();
+            $centros = Centro::lists('nombre', 'id')->all();
+            $countries = countrie::lists('name', 'id')->all();
+            //$countries = countrie::orderBy('name', 'asc')->get();
+            return view('profile.bio.create', compact('countries', 'dependencias', 'bancos', 'centros'));
+        }else
+            return redirect('profile');
     }
 
     /**
@@ -74,10 +79,10 @@ class BioController extends Controller
         //
         //dd($request->all());
         $messages = [
-            'email.regex' => 'Revise el e-mail debe ser el correo misena!',
+            'identificacion.unique' => 'Ya hay un usuario registrado con esa identificacion',
         ];
         $this->validate($request,[
-            'identificacion'=>'required',
+            'identificacion'=>'required|unique:bio',
             'imagendocumento'=>'max:500',
             'lugarexp' => 'required',
             'fechanacimiento' => 'required|date',
@@ -108,7 +113,7 @@ class BioController extends Controller
             $bio->imagendocumento = $imageName;
         }
         $bio->save();
-        return redirect('bio');
+        return redirect('home');
     }
 
     /**
@@ -133,11 +138,15 @@ class BioController extends Controller
     {
         //
         $bio = Bio::where('user',$id)->first();
+
         $dependencias = Dependencia::lists('nombre','id')->all();
         $bancos = Banco::lists('nombre','id')->all();
         $centros = Centro::lists('nombre','id')->all();
         $countries = countrie::lists('name','id')->all();
-        return view('profile.bio.edit',compact('bio','countries','dependencias','bancos','centros'));
+        if($bio != null)
+            return view('profile.bio.edit',compact('bio','countries','dependencias','bancos','centros'));
+        else
+            return view('profile.bio.create',compact('bio','countries','dependencias','bancos','centros'));
 
 
     }

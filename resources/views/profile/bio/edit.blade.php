@@ -1,7 +1,7 @@
 @extends('profile.layouts.app')
 
 @section('htmlheader_title')
-	Crear datos biografia
+	Editar datos biografia
 @endsection
 
 @section('contentheader_title')
