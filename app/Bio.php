@@ -29,6 +29,6 @@ class Bio extends Model
     }
     public function dependenciauser()
     {
-        return $this->belongsTo('\App\dependencia','dependencia','id');
+        return $this->belongsTo(Dependencia::class,'dependencia','id');
     }
 }
