@@ -13,6 +13,6 @@ class Experiencia extends Model
 
     public function citiempresa()
     {
-        return $this->belongsTo('\App\citie','ciudad','id');
+        return $this->belongsTo(Citie::class,'ciudad','id');
     }
 }

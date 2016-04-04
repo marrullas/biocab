@@ -13,6 +13,6 @@ class Formacion extends Model
 
     public function citiinstitucion()
     {
-        return $this->belongsTo('\App\citie','ciudad','id');
+        return $this->belongsTo('\App\Citie','ciudad','id');
     }
 }

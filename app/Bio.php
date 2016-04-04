@@ -17,15 +17,15 @@ class Bio extends Model
     ];
     public function citiexp()
     {
-        return $this->belongsTo('\App\citie','lugarexp','id');
+        return $this->belongsTo(Citie::class,'lugarexp','id');
     }
     public function citinac()
     {
-        return $this->belongsTo('\App\citie','ciudadnacimiento','id');
+        return $this->belongsTo('\App\Citie','ciudadnacimiento','id');
     }
     public function citires()
     {
-        return $this->belongsTo('\App\citie','ciudad','id');
+        return $this->belongsTo('\App\Citie','ciudad','id');
     }
     public function dependenciauser()
     {

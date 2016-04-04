@@ -36,8 +36,9 @@ class BioController extends Controller
         $activartab = true;
         //$bio = Bio::where('user','=',Auth::user()->id)->count();
         $bio = Bio::where('user','=',Auth::user()->id)->get()->first();
-        if($bio == null) {
-            $bio = array();
+        //dd(count($bio));
+        if(count($bio) > 0) {
+            //$bio = array();
             //dd($bio->identificacion);
             return view('profile.bio', compact('bio', 'activartab'));
         }
