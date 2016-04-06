@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\countrie;
 use App\Formacion;
+use App\Tipoformacion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -41,7 +42,8 @@ class FormacionController extends Controller
     {
         //
         $countries = countrie::lists('name','id')->all();
-        return view('profile.education.create',compact('countries'));
+        $tipoformacion = Tipoformacion::lists('nombre','id')->all();
+        return view('profile.education.create',compact('countries','tipoformacion'));
     }
 
     /**
@@ -110,8 +112,9 @@ class FormacionController extends Controller
         //
         $educa = Formacion::where('id',$id)->first();
         $countries = countrie::lists('name','id')->all();
+        $tipoformacion = Tipoformacion::lists('nombre','id')->all();
         //dd($educa);
-        return view('profile.education.edit',compact('educa','countries'));
+        return view('profile.education.edit',compact('educa','countries','tipoformacion'));
     }
 
     /**

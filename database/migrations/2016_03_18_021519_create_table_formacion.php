@@ -20,6 +20,7 @@ class CreateTableFormacion extends Migration
             $table->integer('ciudad')->unsigned(); //llave ciudades
             $table->boolean('terminado')->default(false);
             $table->date('fechaterminado')->nullable();//fecha de ultimo periodo cursado
+            $table->integer('tipoformacion')->unsigned();//nombre de la institucion de la formacion
             $table->string('institucion');//nombre de la institucion de la formacion
             $table->boolean('virtual')->default(false);
             $table->boolean('distacia')->default(false);

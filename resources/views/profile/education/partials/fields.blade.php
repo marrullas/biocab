@@ -22,7 +22,12 @@
             {!! Form::text('institucion', null, [ 'class' => 'form-control', 'placeholder' => 'Digite IE' ] ) !!}
         </div>
     </div>
-
+    <div class="form-group">
+        <label for="inputName" class="control-label">Tipo Formación</label>
+        <div>
+            {{ Form::select('tipoformacion', $tipoformacion,null,['class' => 'form-control','id'=>'tipoformacion', 'placeholder'=>'seleccione tipo formacion']) }}
+        </div>
+    </div>
 
 </div>
 
@@ -53,8 +58,8 @@
             <div class="checkbox">
                 <label>
 
-                    @if(isset($skill))
-                        {{ Form::checkbox('terminado', $skill['terminado']) }} Terminado
+                    @if(isset($educa))
+                        {{ Form::checkbox('terminado', $educa['terminado']) }} Terminado
                     @else
                         {{ Form::checkbox('terminado') }} Terminado
                     @endif
@@ -77,8 +82,8 @@
             <div class="checkbox">
                 <label>
 
-                    @if(isset($skill))
-                        {{ Form::checkbox('virtual', $skill['virtual']) }} Formacion virtual
+                    @if(isset($educa))
+                        {{ Form::checkbox('virtual', $educa['virtual']) }} Formacion virtual
                     @else
                         {{ Form::checkbox('virtual') }} Formacion virtual
                     @endif
@@ -91,8 +96,8 @@
             <div class="checkbox">
                 <label>
 
-                    @if(isset($skill))
-                        {{ Form::checkbox('distacia', $skill['distacia']) }} Formacion a distacia
+                    @if(isset($educa))
+                        {{ Form::checkbox('distacia', $educa['distacia']) }} Formacion a distacia
                     @else
                         {{ Form::checkbox('distacia') }} Formacion a distacia
                     @endif
@@ -105,8 +110,8 @@
             <div class="checkbox">
                 <label>
 
-                    @if(isset($skill))
-                        {{ Form::checkbox('pedagogia', $skill['pedagogia']) }} Formación pedagogia
+                    @if(isset($educa))
+                        {{ Form::checkbox('pedagogia', $educa['pedagogia']) }} Formación pedagogia
                     @else
                         {{ Form::checkbox('pedagogia') }} Formación pedagogia
                     @endif
@@ -119,8 +124,8 @@
             <div class="checkbox">
                 <label>
 
-                    @if(isset($skill))
-                        {{ Form::checkbox('ingles', $skill['ingles']) }} Formacion en Ingles
+                    @if(isset($educa))
+                        {{ Form::checkbox('ingles', $educa['ingles']) }} Formacion en Ingles
                     @else
                         {{ Form::checkbox('ingles') }} Formacion En ingles
                     @endif
@@ -130,10 +135,10 @@
     </div>
     <div class="form-group">
         <label for="inputName" class="control-label">Evidencia/Diploma</label>
-        @if(isset($skill))
-            @if($skill['archivo'])
+        @if(isset($educa))
+            @if($educa['archivo'])
                 <div>
-                    <a href="{{asset('/images/edu/'.$skill['archivo'])}}" class="btn btn-success" target="_blank"> Ver archivo</a>
+                    <a href="{{asset('/images/edu/'.$educa['archivo'])}}" class="btn btn-success" target="_blank"> Ver archivo</a>
                 </div>
             @endif
         @endif
@@ -170,8 +175,8 @@
                  se valida que venga el objeto modelo y se cargan los select correspondientes con las relaciones
                  de la tabla
                  */
-                @if(isset($skill))
-                 $('#countries').val({{ $skill->citiinstitucion->countrie->id }}).trigger("change");
+                @if(isset($educa))
+                 $('#countries').val({{ $educa->citiinstitucion->countrie->id }}).trigger("change");
                 @endif
             }
 
@@ -217,15 +222,15 @@
                     $(selectdest).val(oldciudad).trigger("change");
                 }
 
-                @if(isset($skill)) //solo para update
+                @if(isset($educa)) //solo para update
                 switch (selectchange){
                     case '#region':
-                        $(selectdest).val({{ $skill->ciudad }}).trigger("change");
+                        $(selectdest).val({{ $educa->ciudad }}).trigger("change");
                         flagregion = true;
                         break;
                 }
                 @endif
-                @if(!isset($skill))
+                @if(!isset($educa))
                     $('#divloading').hide();
                 @else
                 if(flagregion == true && flagregion2 == true && flagregion3 == true )
@@ -258,11 +263,11 @@
                 /*
                  selecciona la region dependiendo del select expedicion, nacimiento, residencia
                  */
-                @if(isset($skill)) //solo para update
+                @if(isset($educa)) //solo para update
                 //alert('entro a seleccionar region');
                 switch (selectregion){
                     case '#region':
-                        $(selectregion).val({{ $skill->citiinstitucion->region->id }}).trigger("change");
+                        $(selectregion).val({{ $educa->citiinstitucion->region->id }}).trigger("change");
                         break;
                 }
 

@@ -12,13 +12,13 @@
                           <a href="#">{{ $educa->titulo }} - {{ $educa->institucion }}</a>
                           <a href='#' class='pull-right btn-box-tool'><i class='fa fa-times'></i></a>
                         </span>
-                    <span class='description'>Terminado: {{$educa->fechaterminado}}</span>
+                    <span class='description'>Terminado: {{$educa->fechaterminado}} - Ciudad: {{$educa->citiinstitucion->name}}</span>
                 </div><!-- /.user-block -->
                 <p>
                     {{ $educa->descripcion  }}
                 </p>
                 <ul class="list-inline">
-                    <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> {{$educa->citiinstitucion->name}}</a></li>
+                    <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> {{$educa->tipoformacionnombre->nombre}}</a></li>
                     @if($educa->terminado == 1)
                         <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Finalizado</a></li>
                     @endif

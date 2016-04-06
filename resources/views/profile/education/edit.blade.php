@@ -29,7 +29,7 @@
 								</ul>
 							</div>
 						@endif
-					{!! Form::model($skill,array('route' => ['education.update',$skill],'method'=>'put','files'=> true)) !!}
+					{!! Form::model($educa,array('route' => ['education.update',$educa],'method'=>'put','files'=> true)) !!}
 					@include('profile.education.partials.fields')
 					{!! Form::close() !!}
 					</div><!-- .boxbody-->

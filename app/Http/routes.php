@@ -34,7 +34,7 @@ Route::group(['middleware' => 'web'], function () {
 
     //Route::get('/home', 'HomeController@index');
     Route::get('/home', 'ProfileController@index');
-    Route::get('/','HomeController@index');
+    Route::get('/','ProfileController@index');
     Route::resource('bio', 'BioController');
     Route::resource('profile', 'ProfileController');
     Route::resource('skill', 'ExperienciaController');

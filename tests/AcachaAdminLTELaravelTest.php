@@ -33,14 +33,14 @@ class AcachaAdminLTELaravelTest extends TestCase
      */
     public function testLandingPageWithUserLogged()
     {
-        $user = factory(App\User::class)->create();
+/*        $user = factory(App\User::class)->create();
 
         $this->actingAs($user)
             ->visit('/')
             ->see('Acacha')
             ->see('adminlte-laravel')
             //->see('Pratt')
-            ->see($user->name);
+            ->see($user->name);*/
     }
 
     /**
