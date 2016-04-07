@@ -61,7 +61,7 @@ class ExperienciaController extends Controller
             'archivo'=>'max:500',
             'cargo' => 'required',
             'fechaingreso' => 'required|date',
-            'fechasalida' => 'required|date',
+            'fechasalida' => 'date',
             'ciudad' => 'required',
         ],$messages);
 
@@ -128,7 +128,7 @@ class ExperienciaController extends Controller
             'archivo'=>'max:500',
             'cargo' => 'required',
             'fechaingreso' => 'required|date',
-            'fechasalida' => 'required|date',
+            'fechasalida' => 'date',
             'ciudad' => 'required',
         ],$messages);
 
