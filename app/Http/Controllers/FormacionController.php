@@ -77,7 +77,7 @@ class FormacionController extends Controller
                 $request->file('archivo')->getClientOriginalExtension();
 
             $request->file('archivo')->move(
-                base_path() . '/public/images/exp/', $imageName
+                base_path() . '/public/images/edu/', $imageName
             );
             $educa->archivo = $imageName;
         }

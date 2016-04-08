@@ -1,11 +1,11 @@
 @extends('profile.layouts.app')
 
 @section('htmlheader_title')
-	Agregar datos de experiencia
+	Agregar datos de Formación
 @endsection
 
 @section('contentheader_title')
-	Ingresar datos de experiencia
+	Ingresar datos de Formación
 @endsection
 @section('main-content')
 		<!-- Main content -->
@@ -16,7 +16,7 @@
 				<!-- general form elements -->
 				<div class="box box-primary">
 					<div class="box-header with-border">
-						<h3 class="box-title">Agregar experiencia</h3>
+						<h3 class="box-title">Agregar Formación</h3>
 					</div><!-- /.box-header -->
 					<div class="box-body">
 						@if (count($errors) > 0)

@@ -1,7 +1,7 @@
 @extends('profile.layouts.app')
 
 @section('htmlheader_title')
-	Editar experiencia
+	Editar Formación
 @endsection
 
 @section('contentheader_title')

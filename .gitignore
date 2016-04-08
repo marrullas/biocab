@@ -6,3 +6,6 @@ Homestead.json
 .idea/
 .DS_Store
 /storage/debugbar
+/public/images/edu/
+/public/images/exp/
+/public/images/catalog/
