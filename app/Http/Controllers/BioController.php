@@ -161,14 +161,17 @@ class BioController extends Controller
     public function update(Request $request, $id)
     {
         //
+        //equired|email|unique:users,email,'.$user->id,
+        $bio = Bio::findOrfail($id);
+        //dd($request->all());
         $this->validate($request,[
             'identificacion'=>'required',
             'imagendocumento'=>'max:500',
             'lugarexp' => 'required',
             'fechanacimiento' => 'required|date',
             'ciudadnacimiento' => 'required',
-            'correosena' => 'required|unique:bio|email:regex:/(.*)sena\.edu\.co$/i',
-            'correopersonal' => 'required|unique:bio|email',
+            'correosena' => 'required|email:regex:/(.*)sena\.edu\.co$/i|unique:bio,correosena,'.$bio->id,
+            'correopersonal' => 'required|email|unique:bio,correopersonal,'.$bio->id,
             'telefono' => 'required',
             'ciudad' => 'required',
             'direccion' => 'required',
@@ -178,7 +181,7 @@ class BioController extends Controller
         ]);
 
         //$bio = Bio::where('user',$id)->first();
-        $bio = Bio::findOrfail($id);
+        //$bio = Bio::findOrfail($id);
         $data = $request->all();
         $bio->fill($data);
         if(isset($data['imagendocumento'])) {
