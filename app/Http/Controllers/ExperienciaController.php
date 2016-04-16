@@ -55,6 +55,8 @@ class ExperienciaController extends Controller
         //dd($request->all());
         $messages = [
             'email.regex' => 'Revise el e-mail debe ser el correo misena!',
+            'archivo.image' => 'Las evidencias solo se pueden subir en imagenes (jpg, png)',
+            'archivo.max' => 'El tamaño del archivo no debe superar los 1000kb',
         ];
         $this->validate($request,[
             'empresa'=>'required',
@@ -122,6 +124,8 @@ class ExperienciaController extends Controller
         //
         $messages = [
             'email.regex' => 'Revise el e-mail debe ser el correo misena!',
+            'archivo.image' => 'Las evidencias solo se pueden subir en imagenes (jpg, png)',
+            'archivo.max' => 'El tamaño del archivo no debe superar los 1000kb',
         ];
         $this->validate($request,[
             'empresa'=>'required',
