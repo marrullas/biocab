@@ -84,7 +84,7 @@ class BioController extends Controller
         ];
         $this->validate($request,[
             'identificacion'=>'required|unique:bio',
-            'imagendocumento'=>'max:500',
+            'imagendocumento'=>'image|max:1000',
             'lugarexp' => 'required',
             'fechanacimiento' => 'required|date',
             'ciudadnacimiento' => 'required',

@@ -12,7 +12,7 @@
                         </div>
                         <div class="form-group">
 
-                            <label for="inputName" class="control-label">Imagen Identificación</label>
+                            <label for="inputName" class="control-label">Imagen Identificación (Solo imagen, Máximo 1000kb)</label>
                             @if(isset($bio))
                                 @if($bio['imagendocumento'])
                             <div>
