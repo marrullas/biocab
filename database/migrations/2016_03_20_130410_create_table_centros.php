@@ -16,6 +16,7 @@ class CreateTableCentros extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->string('descripcion');
+            $table->integer('tipocentro_id')->unsigned()->default(1);
             $table->timestamps();
         });
     }
