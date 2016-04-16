@@ -134,7 +134,7 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="inputName" class="control-label">Evidencia/Diploma</label>
+        <label for="inputName" class="control-label">Evidencia/Diploma (Solo imagenes, Maximo 1000kb)</label>
         @if(isset($educa))
             @if($educa['archivo'])
                 <div>
