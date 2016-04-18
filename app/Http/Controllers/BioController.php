@@ -18,11 +18,13 @@ use Illuminate\Support\Facades\Auth;
 
 class BioController extends Controller
 {
-
+    public $userLogueado;
     public function __construct()
     {
 
+
         $this->middleware('auth');
+        $this->userLogueado = User::findOrFail(Auth::user()->id)->first();
     }
     /**
      * Display a listing of the resource.
@@ -37,10 +39,11 @@ class BioController extends Controller
         //$bio = Bio::where('user','=',Auth::user()->id)->count();
         $bio = Bio::where('user','=',Auth::user()->id)->get()->first();
         //dd(count($bio));
+        $user = $this->userLogueado;
         if(count($bio) > 0) {
             //$bio = array();
             //dd($bio->identificacion);
-            return view('profile.bio', compact('bio', 'activartab'));
+            return view('profile.bio', compact('user','bio', 'activartab'));
         }
         else {
             //dd($bio);
@@ -57,14 +60,16 @@ class BioController extends Controller
     public function create()
     {
         //
-        $user = Bio::where('user','=',Auth::user()->id)->get()->first();
-        if(count($user=!0)) {
+
+        $user = $this->userLogueado;
+        $bio  = Bio::where('user','=',Auth::user()->id)->get();
+        if(count($bio=!0)) {
             $dependencias = Dependencia::lists('nombre', 'id')->all();
             $bancos = Banco::lists('nombre', 'id')->all();
             $centros = Centro::lists('nombre', 'id')->all();
             $countries = countrie::lists('name', 'id')->all();
             //$countries = countrie::orderBy('name', 'asc')->get();
-            return view('profile.bio.create', compact('countries', 'dependencias', 'bancos', 'centros'));
+            return view('profile.bio.create', compact('user','countries', 'dependencias', 'bancos', 'centros'));
         }else
             return redirect('profile');
     }
@@ -84,7 +89,7 @@ class BioController extends Controller
         ];
         $this->validate($request,[
             'identificacion'=>'required|unique:bio',
-            'imagendocumento'=>'image|max:1000',
+            'imagendocumento'=>'mimes:jpeg,jpg,png,pdf|max:1000',
             'lugarexp' => 'required',
             'fechanacimiento' => 'required|date',
             'ciudadnacimiento' => 'required',
@@ -166,7 +171,7 @@ class BioController extends Controller
         //dd($request->all());
         $this->validate($request,[
             'identificacion'=>'required',
-            'imagendocumento'=>'max:500',
+            'imagendocumento'=>'mimes:jpeg,jpg,png,pdf|max:1000',
             'lugarexp' => 'required',
             'fechanacimiento' => 'required|date',
             'ciudadnacimiento' => 'required',

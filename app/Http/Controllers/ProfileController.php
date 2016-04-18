@@ -20,10 +20,18 @@ use Illuminate\Http\Request;
 class ProfileController extends Controller
 {
 
+    private $userLogueado;
+
     public function __construct()
     {
 
         $this->middleware('auth');
+        if (Auth::check()) {
+            // The user is logged in...
+            //$this->userLogueado = User::with('tipouser')->findOrFail(Auth::user()->id);
+            $this->userLogueado = User::findOrFail(Auth::user()->id);
+
+        }
     }
     //
 
@@ -35,6 +43,8 @@ class ProfileController extends Controller
     public function index()
     {
         //dd(Auth::user()->bio);
+        $user = $this->userLogueado;
+        //dd($user->tipouser->descripcion);
         $skills = Experiencia::where('user','=',Auth::user()->id)->get();
         $educas = Formacion::where('user','=',Auth::user()->id)->get();
         $bio = Bio::where('user','=',Auth::user()->id)->get()->first();
@@ -42,7 +52,8 @@ class ProfileController extends Controller
             $bio = array();
         }
         $activartab = false;
-        return view('profile.home',compact('skills','educas','bio','activartab'));
+        
+        return view('profile.home',compact('user','skills','educas','bio','activartab'));
     }
 
     public function edit($id)

@@ -13,6 +13,8 @@
 /*Route::get('/', function () {
     return view('/home');
 });*/
+use Illuminate\Support\Facades\Gate;
+
 Route::get('bio/api/getRegions', 'BioController@getRegion');
 /*Route::get('bio/api/getRegions', function($id) {
     dd(\App\countrie::whereRegion(1));
@@ -45,4 +47,11 @@ Route::group(['middleware' => 'web'], function () {
 /*    Route::get('/', function () {
         return view('welcome');
     });*/
+
+});
+
+Route::group(['prefix'=>'admin', 'middleware'=> ['web'],'namespace' => 'admin'],   function() {
+
+    Route::resource('users','UserController');
+
 });

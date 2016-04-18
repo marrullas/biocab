@@ -52,4 +52,14 @@ class ProfileTest extends TestCase
             ->see('Guardar')
             ->see('volver sin guardar');
     }
+
+    public function testSkillCreate()
+    {
+        $user = factory(App\User::class)->create();
+        $this->actingAs($user)
+            ->visit('/skill/create')
+            ->see('Agregar experiencia')
+            ->see('Guardar')
+            ->see('volver sin guardar');
+    }
 }

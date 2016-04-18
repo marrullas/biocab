@@ -60,7 +60,7 @@ class ExperienciaController extends Controller
         ];
         $this->validate($request,[
             'empresa'=>'required',
-            'archivo'=>'image|max:1000',
+            'archivo'=>'mimes:jpeg,jpg,png,pdf|max:1000',
             'cargo' => 'required',
             'fechaingreso' => 'required|date',
             'fechasalida' => 'date',
@@ -129,7 +129,7 @@ class ExperienciaController extends Controller
         ];
         $this->validate($request,[
             'empresa'=>'required',
-            'archivo'=>'image|max:1000',
+            'archivo'=>'mimes:jpeg,jpg,png,pdf|max:1000',
             'cargo' => 'required',
             'fechaingreso' => 'required|date',
             'fechasalida' => 'date',

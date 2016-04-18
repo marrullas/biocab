@@ -67,7 +67,7 @@ class AcachaAdminLTELaravelTest extends TestCase
             ->type($user->email, 'email')
             ->type('passw0RD', 'password')
             ->press('Ingresar')
-            ->seePageIs('/home')
+            ->seePageIs('/profile')
             ->see($user->name);
     }
 
@@ -164,15 +164,18 @@ class AcachaAdminLTELaravelTest extends TestCase
      */
     public function testNewUserRegistration()
     {
+
+        $tipouser = factory(App\Tipousuario::class)->create();
+        //dd($tipouser);
         $this->visit('/register')
             ->type('Sergi Tur Badenas', 'name')
-            ->type('sergiturbadenas@gmail.com', 'email')
+            ->type('sergiturbadenas@misena.edu.co', 'email')
 //            ->check('terms') TODO
             ->type('passw0RD', 'password')
             ->type('passw0RD', 'password_confirmation')
             ->press('Registrar')
-            ->seePageIs('/home')
-            ->seeInDatabase('users', ['email' => 'sergiturbadenas@gmail.com',
+            ->seePageIs('/profile')
+            ->seeInDatabase('users', ['email' => 'sergiturbadenas@misena.edu.co',
                                       'name'  => 'Sergi Tur Badenas']);
 
     }

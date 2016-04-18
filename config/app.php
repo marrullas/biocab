@@ -165,6 +165,11 @@ return [
          * Acacha AdminLTE template provider
          */
         //Acacha\AdminLTETemplateLaravel\Providers\AdminLTETemplateServiceProvider::class,
+
+        /*
+         * test factory helper
+         */
+        Mpociot\LaravelTestFactoryHelper\TestFactoryHelperServiceProvider::class
     ],
 
     /*

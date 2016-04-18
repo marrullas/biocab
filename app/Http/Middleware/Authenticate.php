@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\User;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,7 +25,8 @@ class Authenticate
                 return redirect()->guest('login');
             }
         }
-
+        //$user = User::find(Auth::User()->id);
+        //\Session::put('tipouser', $user->tipouser->nombre);
         return $next($request);
     }
 }

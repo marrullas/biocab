@@ -26,7 +26,7 @@ class User extends Authenticatable
 
     public function tipouser()
     {
-        return $this->belongsTo('\App\Tipousuario','tipousuario','id');
+        return $this->belongsTo(Tipousuario::class,'tipousuario','id');
     }
     public function bio()
     {
@@ -37,4 +37,10 @@ class User extends Authenticatable
 
         return (bool) $this->bio()->first();
     }
+    public function getTipousuarioLogueadoAttribute()
+    {
+        //dd('por aca');
+        return $this->tipouser->descripcion;
+    }
+
 }

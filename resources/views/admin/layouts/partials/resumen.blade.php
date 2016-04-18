@@ -6,20 +6,20 @@
             <!-- Profile Image -->
             <div class="box box-primary">
                 <div class="box-body box-profile">
-                    <img class="profile-user-img img-responsive img-circle" src="{{ asset('/images/catalog/'.$user->imagen) }}" alt="User profile picture">
-                    <h3 class="profile-username text-center">{{ $user->name }}</h3>
+                    <img class="profile-user-img img-responsive img-circle" src="{{ asset('/images/catalog/'.Auth::user()->imagen) }}" alt="User profile picture">
+                    <h3 class="profile-username text-center">{{ Auth::user()->name }}</h3>
                     {{--<p class="text-muted text-center">Software Engineer</p>--}}
 
                     <ul class="list-group list-group-unbordered">
                         <li class="list-group-item">
-                            <b>Correo</b> <a class="pull-right">{{ $user->email }}</a>
+                            <b>Correo</b> <a class="pull-right">{{ Auth::user()->email }}</a>
                         </li>
                         <li class="list-group-item">
-                            <b>Tipo de usuario</b> <a class="pull-right">{{ $user->tipouser->descripcion }}</a>
+                            <b>Tipo de usuario</b> <a class="pull-right">{{ Auth::user()->name }}</a>
                         </li>
                     </ul>
 
-                    <a href="{{url('profile/'.$user->id.'/edit')}}" class="btn btn-primary btn-block"><b>Editar Información Usuario</b></a>
+                    <a href="{{url('profile/'.Auth::user()->id.'/edit')}}" class="btn btn-primary btn-block"><b>Editar Información Usuario</b></a>
                 </div><!-- /.box-body -->
             </div><!-- /.box -->
 
@@ -29,9 +29,9 @@
                     <h3 class="box-title">Acerca de mi</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                    @if($user->hasBio())
+                    @if(Auth::user()->hasBio())
                     <strong><i class="fa fa-file-text-o margin-r-5"></i> Descripción</strong>
-                    <p>{{$user->descripcion}}</p>
+                    <p>{{Auth::user()->descripcion}}</p>
 {{--                    <hr>
                     <strong><i class="fa fa-book margin-r-5"></i>  Education</strong>
                     <p class="text-muted">
@@ -41,8 +41,8 @@
                     <hr>
 
                     <strong><i class="fa fa-map-marker margin-r-5"></i> Residencia</strong>
-                    <p class="text-muted">{{ $user->bio->citires->name }}, {{ $user->bio->citires->region->name }}</p>
-                    <p class="text-muted">{{ $user->bio->direccion }}</p>
+                    <p class="text-muted">{{ Auth::user()->bio->citires->name }}, {{ Auth::user()->bio->citires->region->name }}</p>
+                    <p class="text-muted">{{ Auth::user()->bio->direccion }}</p>
 
 {{--                    <hr>
 

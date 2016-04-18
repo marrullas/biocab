@@ -64,7 +64,7 @@ class FormacionController extends Controller
         ];
         $this->validate($request,[
             'titulo'=>'required',
-            'archivo'=>'image|max:1000',
+            'archivo'=>'mimes:jpeg,jpg,png,pdf|max:1000',
             'institucion' => 'required',
             'fechaterminado' => 'date',
             'ciudad' => 'required',
@@ -136,7 +136,7 @@ class FormacionController extends Controller
         ];
         $this->validate($request,[
             'titulo'=>'required',
-            'archivo'=>'image|max:1000',
+            'archivo'=>'mimes:jpeg,jpg,png,pdf|max:1000',
             'institucion' => 'required',
             'fechaterminado' => 'date',
             'ciudad' => 'required',
