@@ -97,7 +97,7 @@
                                 </div>
                             </div>
                         <div class="form-group">
-                            <label for="inputName" class="control-label">Evidencia/Carta laboral (Solo imagenes, Maximo 1000kb)</label>
+                            <label for="inputName" class="control-label">Evidencia/Carta laboral (Imagen o pdf / Maximo 1000kb)</label>
                             @if(isset($skill))
                                 @if($skill['archivo'])
                                     <div>
