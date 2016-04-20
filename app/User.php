@@ -32,6 +32,10 @@ class User extends Authenticatable
     {
         return $this->hasOne('\App\Bio','user','id');
     }
+    public function tipoformacion()
+    {
+        return $this->hasMany(Tipoformacion::class,'user','id');
+    }
     //inside App\User:
     public function hasBio(){
 
@@ -42,5 +46,30 @@ class User extends Authenticatable
         //dd('por aca');
         return $this->tipouser->descripcion;
     }
+    public static function filtroPaginación($nombre=null,$tipoformacion=null)
+    {
+        return User::nombre($nombre)
+            ->tipoformacion($tipoformacion)
+            ->paginate();
+    }
+
+    public function scopeNombre($query, $nombre)
+    {
+
+        if (!empty($nombre))
+            $query->where('name', 'like', "%$nombre%");
+
+
+    }
+    public function scopeTipoformacion($query,$tipoformacion)
+    {
+        if(!empty($tipoformacion)) {
+            //$query->tipoformacion()->where('nombre', 'like', "%$tipoformacion%");
+            $query->join('formacion','formacion.user','=','users.id')
+                ->where('formacion.tipoformacion','=',$tipoformacion);
+        }
+    }
+    
+  
 
 }

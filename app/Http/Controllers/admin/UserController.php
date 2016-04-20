@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Bio;
 use App\Experiencia;
 use App\Formacion;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -16,13 +17,15 @@ use Gate;
 class UserController extends Controller
 {
 
-    public function __construct(\Illuminate\Http\Request $request)
+    public function __construct()
     {
         $this->middleware('auth');
-        $user = \App\User::find(Auth::User());
-        if(Gate::denies('isAdmin',$user)){
-            //dd('paila');
-            abort(403,'No autorizado');
+        if (Auth::check()) {
+            $user = User::find(Auth::id());
+            if (Gate::denies('isAdmin', $user)) {
+                //dd('paila');
+                abort(403, 'No autorizado');
+            }
         }
     }
     /**

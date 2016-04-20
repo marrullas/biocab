@@ -20,6 +20,25 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'tipousuario' => factory(App\Tipousuario::class)->create()->id,
     ];
 });
+$factory->defineAs(App\User::class, 'usermany',function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name,
+        'email' => $faker->email,
+        'password' => bcrypt(str_random(10)),
+        'remember_token' => str_random(10),
+
+    ];
+});
+$factory->defineAs(App\User::class, 'useradmin',function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name,
+        'email' => $faker->email,
+        'password' => bcrypt(str_random(10)),
+        'remember_token' => str_random(10),
+        'tipousuario' => factory(App\Tipousuario::class)->create(['id'=> 4,'nombre'=>'Admon'])->id,
+
+    ];
+});
 $factory->define(App\Banco::class, function (Faker\Generator $faker) {
     return [
         'nombre' =>  $faker->word ,

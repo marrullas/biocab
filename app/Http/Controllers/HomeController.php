@@ -35,6 +35,12 @@ class HomeController extends Controller
     public function index()
     {
         //return view('home');
-        return redirect()->action('ProfileController@index');
+        if(Gate::denies('isAdmin')) {
+            //return view('profile.home', compact('user', 'skills', 'educas', 'bio', 'activartab'));
+            return redirect()->action('ProfileController@index');
+        }else{
+            return redirect()->action('ConsultaController@index');
+        }
+
     }
 }

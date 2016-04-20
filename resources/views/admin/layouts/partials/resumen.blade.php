@@ -6,20 +6,24 @@
             <!-- Profile Image -->
             <div class="box box-primary">
                 <div class="box-body box-profile">
-                    <img class="profile-user-img img-responsive img-circle" src="{{ asset('/images/catalog/'.Auth::user()->imagen) }}" alt="User profile picture">
-                    <h3 class="profile-username text-center">{{ Auth::user()->name }}</h3>
-                    {{--<p class="text-muted text-center">Software Engineer</p>--}}
-
-                    <ul class="list-group list-group-unbordered">
-                        <li class="list-group-item">
-                            <b>Correo</b> <a class="pull-right">{{ Auth::user()->email }}</a>
-                        </li>
-                        <li class="list-group-item">
-                            <b>Tipo de usuario</b> <a class="pull-right">{{ Auth::user()->name }}</a>
-                        </li>
-                    </ul>
-
-                    <a href="{{url('profile/'.Auth::user()->id.'/edit')}}" class="btn btn-primary btn-block"><b>Editar Información Usuario</b></a>
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Campos de busqueda</h3>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        {!! Form::model(['nombre'=>$nombre,'tipoformacion'=>$tipoformacion],['route'=> 'consulta.index', 'method'=>'GET', 'class'=>'search-form-full', 'role'=>'search' ]) !!}
+                        {{--<form method="get" role="form" class="search-form-full">--}}
+                            <div class="form-group">
+                                {{ Form::text('nombre',$nombre,['class'=>'form-control','id'=>'nombre','placeholder'=>'Buscar por nombre...']) }}
+                                {{--<input type="text" class="form-control" name="s" id="search-input" placeholder="Buscar por nombre...">--}}
+                                <i class="entypo-search"></i>
+                                <hr>
+                                {{ Form::select('tipoformacion', $tipoformacionList,$tipoformacion,['class' => 'form-control','id'=>'tipoformacion', 'placeholder'=>'Seleccione un tipo de formacion']) }}
+                            </div>
+                        <button type="submit" class="btn btn-default">Buscar</button>
+                        <a class="btn btn-warning" href="{{ URL::to('/consulta/') }}">Limpiar</a>
+                        {{--</form>--}}
+                        {!! Form::close() !!}
+                    </div>
                 </div><!-- /.box-body -->
             </div><!-- /.box -->
 
@@ -67,19 +71,10 @@
             </div><!-- /.box -->
         </div><!-- /.col -->
         <div class="col-md-9">
-            <div class="nav-tabs-custom">
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="#activity" data-toggle="tab">Experiencia</a></li>
-                    <li><a href="#timeline" data-toggle="tab">Formación</a></li>
-                    <li><a href="#settings" data-toggle="tab">Datos básicos</a></li>
-                </ul>
-                <div class="tab-content">
-                    @include('profile.skills.partials.experienciatab')
-                    @include('profile.education.partials.formaciontab')
-                    @include('profile.bio.partials.biotab')
 
-                </div><!-- /.tab-content -->
-            </div><!-- /.nav-tabs-custom -->
+                    @include('admin.layouts.partials.listuser')
+
+
         </div><!-- /.col -->
     </div><!-- /.row -->
 

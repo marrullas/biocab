@@ -18,13 +18,13 @@ use Illuminate\Support\Facades\Auth;
 
 class BioController extends Controller
 {
-    public $userLogueado;
+    private $userLogueado;
     public function __construct()
     {
-
-
         $this->middleware('auth');
-        $this->userLogueado = User::findOrFail(Auth::user()->id)->first();
+        if (Auth::check()) {
+            $this->userLogueado = User::find(Auth::id());
+        }
     }
     /**
      * Display a listing of the resource.

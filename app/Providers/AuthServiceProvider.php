@@ -26,9 +26,10 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies($gate);
 
-        $gate->define('isAdmin', function($user){
-            //dd($user);
-           return $user->tipousuario === 4; //validamos que sea un usuarion administrador
+        $gate->define('isAdmin', function($user=null){
+            if(empty($user))
+                $user = Auth::user();
+           return intval($user->tipousuario) === 4; //validamos que sea un usuarion administrador
         });
 
         //

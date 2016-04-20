@@ -11,9 +11,11 @@ use App\Dependencia;
 use App\Experiencia;
 use App\Formacion;
 use App\Http\Requests;
+use App\Tipoformacion;
+use App\Tipousuario;
 use App\User;
 use Illuminate\Support\Facades\Auth;
-
+use Gate;
 use Illuminate\Http\Request;
 
 
@@ -52,8 +54,11 @@ class ProfileController extends Controller
             $bio = array();
         }
         $activartab = false;
-        
-        return view('profile.home',compact('user','skills','educas','bio','activartab'));
+        if(Gate::denies('isAdmin')) {
+            return view('profile.home', compact('user', 'skills', 'educas', 'bio', 'activartab'));
+        }else{
+            return redirect()->action('ConsultaController@index');
+        }
     }
 
     public function edit($id)

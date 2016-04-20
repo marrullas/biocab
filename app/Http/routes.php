@@ -41,7 +41,9 @@ Route::group(['middleware' => 'web'], function () {
     Route::resource('profile', 'ProfileController');
     Route::resource('skill', 'ExperienciaController');
     Route::resource('education', 'FormacionController');
+    Route::resource('consulta', 'ConsultaController');
     //Route::get('profile', 'ProfileController@index');
+    Route::get('consulta/verusuario/{id}','ConsultaController@verusuario');
     Route::get('bio/api/getRegions', 'BioController@getRegion');
     Route::get('bio/api/getCities', 'BioController@getCitie');
 /*    Route::get('/', function () {
