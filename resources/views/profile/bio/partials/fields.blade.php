@@ -62,7 +62,7 @@
                         <div class="form-group">
                             <label for="inputName" class="control-label">Fecha de nacimiento (dd/mm/aaaa) Ej. (10/03/1970)</label>
                             <div>
-                                {!! Form::date('fechanacimiento', null, [ 'class' => 'form-control', 'placeholder' => 'Fecha Nacimiento','id'=>'fechanacimiento' ] ) !!}
+                                {!! Form::text('fechanacimiento', null, [ 'class' => 'form-control datepicker', 'placeholder' => 'Fecha Nacimiento','id'=>'fechanacimiento' ] ) !!}
                             </div>
                         </div>
                         <div class="form-group">
@@ -207,11 +207,20 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.min.js"></script>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/css-spinning-spinners/1.1.0/load3.css" />
+    <script src="{{ asset('plugins/datepicker/bootstrap-datepicker.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('plugins/datepicker/locales/bootstrap-datepicker.es.js') }}" type="text/javascript"></script>
     <script language="JavaScript">
         $(document).ready(function () {
             var flagregion = true;
             var flagregion2 = true;
             var flagregion3 = true;
+
+            $('.datepicker').datepicker({
+                format: 'dd/mm/yyyy',
+                autoclose: true,
+                language: 'es'
+
+            });
             //se valida que no sea una recarga de un formulario con errores de datos ingresados por usuarios
             if("{{old('countries')}}" != '')
             {

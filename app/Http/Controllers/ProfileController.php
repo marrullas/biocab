@@ -54,11 +54,11 @@ class ProfileController extends Controller
             $bio = array();
         }
         $activartab = false;
-        if(Gate::denies('isAdmin')) {
+        //if(Gate::denies('isAdmin')) {
             return view('profile.home', compact('user', 'skills', 'educas', 'bio', 'activartab'));
-        }else{
+/*        }else{
             return redirect()->action('ConsultaController@index');
-        }
+        }*/
     }
 
     public function edit($id)

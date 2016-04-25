@@ -2,6 +2,7 @@
         <div class="active tab-pane" id="activity">
             @foreach($skills as $skill)
                     <!-- Post -->
+
             <div class="post">
                 <div class="user-block">
                     <img class="img-circle img-bordered-sm" src="https://developers.google.com/android/work/images/afw-logo-64.png" alt="user image">
@@ -9,8 +10,9 @@
                           <a href="#">{{ $skill->empresa }} - {{ $skill->cargo }}</a>
                           <a href='#' class='pull-right btn-box-tool'><i class='fa fa-times'></i></a>
                         </span>
-                    <span class='description'>Entre: {{$skill->fechaingreso}} y {{$skill->fechasalida}}</span>
+                    <span class='description'>Entre: {{$skill->fechaingreso}} y {{(!empty($skill->fechasalida)? $skill->fechasalida : 'Sin terminar')}}</span>
                 </div><!-- /.user-block -->
+
                 <p>
                     {{ $skill->funciones  }}
                 </p>

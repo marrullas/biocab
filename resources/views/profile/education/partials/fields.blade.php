@@ -70,7 +70,7 @@
     <div class="form-group">
         <label for="inputName" class="control-label">Fecha finalización</label>
         <div>
-            {!! Form::date('fechaterminado', null, [ 'class' => 'form-control', 'placeholder' => 'Fecha termino de estudios','id'=>'fechaterminado' ] ) !!}
+            {!! Form::text('fechaterminado', null, [ 'class' => 'form-control datepicker', 'placeholder' => 'Fecha termino de estudios','id'=>'fechaterminado' ] ) !!}
         </div>
     </div>
 
@@ -161,8 +161,16 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.min.js"></script>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/css-spinning-spinners/1.1.0/load3.css" />
+    <script src="{{ asset('plugins/datepicker/bootstrap-datepicker.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('plugins/datepicker/locales/bootstrap-datepicker.es.js') }}" type="text/javascript"></script>
     <script language="JavaScript">
         $(document).ready(function () {
+            $('.datepicker').datepicker({
+                format: 'dd/mm/yyyy',
+                autoclose: true,
+                language: 'es'
+
+            });
             //se valida que no sea una recarga de un formulario con errores de datos ingresados por usuarios
             if("{{old('countries')}}" != '')
             {

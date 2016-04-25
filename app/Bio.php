@@ -31,4 +31,15 @@ class Bio extends Model
     {
         return $this->belongsTo(Dependencia::class,'dependencia','id');
     }
+    public function setFechanacimientoAttribute($value)
+    {
+        if (!empty($value))
+            $this->attributes['fechanacimiento'] = Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d');
+    }
+    public function getFechanacimientoAttribute($value)
+    {
+
+        if (!empty($value))
+            return Carbon::createFromFormat('Y-m-d', $value)->format('d/m/Y');
+    }
 }

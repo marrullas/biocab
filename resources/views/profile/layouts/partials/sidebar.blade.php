@@ -34,10 +34,10 @@
             <li class="header">MENU PRINCIPAL</li>
             <!-- Optionally, you can add icons to the links -->
             {{--<li class="active"><a href="{{ url('home') }}"><i class='fa fa-link'></i> <span>Inicio</span></a></li>--}}
-            <li><a href="{{ url('profile') }}"><i class='fa fa-link'></i> <span>Resumen perfil</span></a></li>
             <li class="treeview">
-                <a href="#"><i class='fa fa-link'></i> <span>Perfil</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <a href="#"><i class='fa fa-link'></i> <span>Menu Perfil</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
+                    <li><a href="{{ url('profile') }}">Perfil</a></li>
                     <li><a href="{{ url('bio') }}">Datos basicos</a></li>
                     <li><a href="{{ url('skill') }}">Experiencia</a></li>
                     <li><a href="{{ url('education') }}">Formación</a></li>

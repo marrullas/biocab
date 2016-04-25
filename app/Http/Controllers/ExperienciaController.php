@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\countrie;
 use App\Experiencia;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests;
@@ -62,14 +63,19 @@ class ExperienciaController extends Controller
             'empresa'=>'required',
             'archivo'=>'mimes:jpeg,jpg,png,pdf|max:1000',
             'cargo' => 'required',
-            'fechaingreso' => 'required|date',
-            'fechasalida' => 'date',
+            'fechaingreso' => 'required|date_format:d/m/Y',
+            'fechasalida' => 'date_format:d/m/Y',
             'ciudad' => 'required',
         ],$messages);
 
         $data = $request->all();
+        //dd($request->all());
+        //$data['fechaingreso'] = Carbon::createFromFormat('d/m/Y', $request->fechaingreso)->format('Y-m-d');
+        //$data['fechasalida'] = Carbon::createFromFormat('d/m/Y', $request->fechasalida)->format('Y-m-d');
         //dd($data);
         $skill =  new Experiencia($data);
+        //dd($skill);
+
         $skill->user = Auth::user()->id;
         if(isset($data['archivo'])) {
             $imageName = Auth::user()->id . '_' . $data['empresa'] .str_random(8).'.' .
@@ -131,8 +137,8 @@ class ExperienciaController extends Controller
             'empresa'=>'required',
             'archivo'=>'mimes:jpeg,jpg,png,pdf|max:1000',
             'cargo' => 'required',
-            'fechaingreso' => 'required|date',
-            'fechasalida' => 'date',
+            'fechaingreso' => 'required|date_format:d/m/Y',
+            'fechasalida' => 'date_format:d/m/Y',
             'ciudad' => 'required',
         ],$messages);
 

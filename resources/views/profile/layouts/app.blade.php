@@ -34,7 +34,7 @@ desired effect
 
     @include('layouts.partials.mainheader')
 
-    @include('profile.layouts.partials.sidebar')
+    @include('layouts.partials.selectsidebar')
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">

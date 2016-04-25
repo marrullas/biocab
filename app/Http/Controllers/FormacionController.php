@@ -66,7 +66,7 @@ class FormacionController extends Controller
             'titulo'=>'required',
             'archivo'=>'mimes:jpeg,jpg,png,pdf|max:1000',
             'institucion' => 'required',
-            'fechaterminado' => 'date',
+            'fechaterminado' => 'date_format:d/m/Y',
             'ciudad' => 'required',
         ],$messages);
 
@@ -138,7 +138,7 @@ class FormacionController extends Controller
             'titulo'=>'required',
             'archivo'=>'mimes:jpeg,jpg,png,pdf|max:1000',
             'institucion' => 'required',
-            'fechaterminado' => 'date',
+            'fechaterminado' => 'date_format:d/m/Y',
             'ciudad' => 'required',
         ],$messages);
 

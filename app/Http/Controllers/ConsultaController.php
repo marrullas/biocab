@@ -8,17 +8,25 @@ use App\Formacion;
 use App\Tipoformacion;
 use App\User;
 use Illuminate\Http\Request;
-
+use Gate;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 
 class ConsultaController extends Controller
 {
     //
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        if(Gate::denies('isAdmin'))
+            abort(403);
+    }
+
     public function index()
     {
 
-        //dd(request()->all());
+        //dd(Auth::user()->tipouser->nombre);
 
         $nombre = request()->get('nombre');
         $tipoformacion =  request()->get('tipoformacion');
