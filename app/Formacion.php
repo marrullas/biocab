@@ -17,6 +17,11 @@ class Formacion extends Model
         return $this->belongsTo('\App\Citie','ciudad','id');
     }
 
+    public function user()
+    {
+        return $this->hasOne('App\User','id','user');
+    }
+
     public function tipoformacionnombre()
     {
         return $this->belongsTo(Tipoformacion::class,'tipoformacion','id');
@@ -31,6 +36,12 @@ class Formacion extends Model
 
         if (!empty($value))
             return Carbon::createFromFormat('Y-m-d', $value)->format('d/m/Y');
+    }
+    
+   public function scopeHasIngles($query)
+    {
+
+        return $query->where('ingles',1);
     }
 
 }

@@ -19,7 +19,7 @@ class ConsultaController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth');  
         if(Gate::denies('allow-consulta'))
             abort(403);
     }
@@ -36,7 +36,7 @@ class ConsultaController extends Controller
         $tipoformacion =  request()->get('tipoformacion');
         $page =  request()->get('page');
         $userslist = User::filtroPaginación($nombre,$tipoformacion,$ingles,$pedagogia);
-        //dd($userslist);
+        dd($userslist[0]->hasIngles());
         $bio = Bio::where('user','=',Auth::user()->id)->get()->first();
         if($bio == null) {
             $bio = array();

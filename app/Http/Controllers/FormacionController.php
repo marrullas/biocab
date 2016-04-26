@@ -68,6 +68,7 @@ class FormacionController extends Controller
             'institucion' => 'required',
             'fechaterminado' => 'date_format:d/m/Y',
             'ciudad' => 'required',
+            'tipoformacion' => 'required'
         ],$messages);
 
         $data = $request->all();
@@ -140,6 +141,7 @@ class FormacionController extends Controller
             'institucion' => 'required',
             'fechaterminado' => 'date_format:d/m/Y',
             'ciudad' => 'required',
+            'tipoformacion' => 'required'
         ],$messages);
 
         //dd($data);

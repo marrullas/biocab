@@ -9,4 +9,6 @@ class Tipoformacion extends Model
     //
     protected $table = 'tipoformacion';
     protected $fillable = ['nombre','descripcion'];
+
+
 }

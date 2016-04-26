@@ -36,6 +36,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Tipoformacion::class,'user','id');
     }
+    public function formacion()
+    {
+        return $this->hasMany(Formacion::class,'user','id');
+    }
+    public function formacionIngles()
+    {
+        return $this->hasMany(Formacion::class,'user','id')->hasIngles();
+    }
     //inside App\User:
     public function hasBio(){
 
@@ -52,12 +60,20 @@ class User extends Authenticatable
             ->tipoformacion($tipoformacion)
             ->ingles($ingles)
             ->paginate();*/
-        $query = User::nombre($nombre);
-        if (!empty($tipoformacion || $ingles || $pedagogia)) {
+        $user = User::nombre($nombre)
+            ->tipoformacion()
+            ->paginate();
+        dd($user);
+        return $user;
+        return User::with('formacion')
+            ->nombre($nombre)
+            ->tipoformacion($tipoformacion,$ingles,$pedagogia)
+            ->paginate();
+/*        if (!empty($tipoformacion || $ingles || $pedagogia)) {
 
             $query->tipoformacion($tipoformacion,$ingles,$pedagogia);
-        }
-        return $query->paginate();
+        }*/
+        //return $query->paginate();
     }
 
     public function scopeNombre($query, $nombre)
@@ -68,23 +84,33 @@ class User extends Authenticatable
 
 
     }
-    public function scopeTipoformacion($query,$tipoformacion,$ingles,$pedagogia)
+/*    public function scopeTipoformacion($query,$tipoformacion,$ingles,$pedagogia)
     {
         $query->join('formacion','formacion.user','=','users.id');
         if(!empty($tipoformacion)) {
             $query->where('formacion.tipoformacion', '=', $tipoformacion);
                 }
         if ($ingles){
-            $query->where('formacion.ingles','=',$ingles);
+            //$query->where('formacion.ingles','=',$ingles);
+
+            $query->formacion()->hasIngles();
         }
         if ($pedagogia){
             $query->where('formacion.pedagogia','=',$pedagogia);
         }
 
-    }
-
+    }*/
+    public function scopeTipoformacion($query)
+    {
+        return $query->whereIn('users.id',function($q){
+            $q->select('formacion.user')
+                ->from('formacion')
+                ->where('formacion.ingles',1);
+        });
+            }
     public function scopeIngles($query,$ingles, $activejoin)
     {
+        return $query->where('formacion.ingles',1);
         if($ingles){
             //$query->where('formacion.ingles','=',$ingles);
             if ($activejoin)
@@ -92,6 +118,16 @@ class User extends Authenticatable
 
             $query->where('formacion.ingles','=',$ingles);
         }
+    }
+
+    public function hasIngles()
+    {
+        foreach ($this->formacion()->get() as $formacion)
+        {
+            if($formacion->ingles == true)
+                return true;
+        }
+        return false;
     }
     
   
