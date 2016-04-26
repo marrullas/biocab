@@ -36,7 +36,7 @@
                             <a href="#">{{$userl->email}}</a>
                         </td>
                         <td style="width: 20%;">
-                            <a href="{{ URL::to('/consulta/verusuario', $userl) }}" class="table-link">
+                            <a href="{{ URL::to('/consulta/verusuario', $userl->id) }}" class="table-link">
 									<span class="fa-stack">
 										<i class="fa fa-square fa-stack-2x"></i>
 										<i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>

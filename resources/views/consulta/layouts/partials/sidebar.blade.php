@@ -31,9 +31,21 @@
 
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
-            <li class="header">MENU CONSULTA</li>
+            <li class="header">MENU ADMINISTRADOR</li>
             <!-- Optionally, you can add icons to the links -->
             {{--<li class="active"><a href="{{ url('home') }}"><i class='fa fa-link'></i> <span>Inicio</span></a></li>--}}
+            <li class="treeview">
+                <a href="{{ url('admin') }}"><i class='fa fa-link'></i> <span>Admin</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ url('bio') }}">Crear usuario</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#"><i class='fa fa-link'></i> <span>Menu Consulta</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ url('consulta') }}">Consulta</a></li>
+                </ul>
+            </li>
             <li class="treeview">
                 <a href="{{ url('profile') }}"><i class='fa fa-link'></i> <span>Menu Perfil</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
@@ -41,12 +53,6 @@
                     <li><a href="{{ url('bio') }}">Datos basicos</a></li>
                     <li><a href="{{ url('skill') }}">Experiencia</a></li>
                     <li><a href="{{ url('education') }}">Formación</a></li>
-                </ul>
-            </li>
-            <li class="treeview">
-                <a href="#"><i class='fa fa-link'></i> <span>Menu</span> <i class="fa fa-angle-left pull-right"></i></a>
-                <ul class="treeview-menu">
-                    <li><a href="{{ url('consulta') }}">Consulta</a></li>
                 </ul>
             </li>
         </ul><!-- /.sidebar-menu -->

@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Gate;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 
 class ConsultaController extends Controller
 {
@@ -19,7 +20,7 @@ class ConsultaController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        if(Gate::denies('isAdmin'))
+        if(Gate::denies('allow-consulta'))
             abort(403);
     }
 
@@ -27,17 +28,21 @@ class ConsultaController extends Controller
     {
 
         //dd(Auth::user()->tipouser->nombre);
-
+        //dd(request()->all());
+        $ingles = (Input::has('ingles')) ? true : false;
+        $pedagogia = (Input::has('pedagogia')) ? true : false;
+        //dd($ingles);
         $nombre = request()->get('nombre');
         $tipoformacion =  request()->get('tipoformacion');
         $page =  request()->get('page');
-        $userslist = User::filtroPaginación($nombre,$tipoformacion);
+        $userslist = User::filtroPaginación($nombre,$tipoformacion,$ingles,$pedagogia);
+        //dd($userslist);
         $bio = Bio::where('user','=',Auth::user()->id)->get()->first();
         if($bio == null) {
             $bio = array();
         }
         $tipoformacionList = Tipoformacion::lists('nombre','id')->all();
-        return view('admin.home', compact('nombre','user','userslist','tipoformacion', 'tipoformacionList', 'bio','page'));
+        return view('consulta.home', compact('ingles','pedagogia','nombre','user','userslist','tipoformacion', 'tipoformacionList', 'bio','page'));
     }
     public function verusuario($id)
     {

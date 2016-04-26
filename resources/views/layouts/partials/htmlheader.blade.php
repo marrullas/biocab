@@ -26,4 +26,6 @@
     <![endif]-->
     <link href="{{ asset('plugins/datepicker/datepicker3.css') }}" rel="stylesheet" type="text/css" />
 
+    <link href="{{ asset('plugins/iCheck/all.css') }}" rel="stylesheet">
+
 </head>

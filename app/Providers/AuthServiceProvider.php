@@ -32,6 +32,12 @@ class AuthServiceProvider extends ServiceProvider
            return intval($user->tipousuario) === 4; //validamos que sea un usuarion administrador
         });
 
+        $gate->define('allow-consulta',function($user = null){
+           if (empty($user))
+               $user = Auth::user();
+            return (intval($user->tipousuario) === 4 || intval($user->tipousuario) === 2);
+        });
+
         //
     }
 }

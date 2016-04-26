@@ -46,11 +46,18 @@ class User extends Authenticatable
         //dd('por aca');
         return $this->tipouser->descripcion;
     }
-    public static function filtroPaginación($nombre=null,$tipoformacion=null)
+    public static function filtroPaginación($nombre=null,$tipoformacion=null,$ingles = false,$pedagogia = false)
     {
-        return User::nombre($nombre)
+/*        return User::nombre($nombre)
             ->tipoformacion($tipoformacion)
-            ->paginate();
+            ->ingles($ingles)
+            ->paginate();*/
+        $query = User::nombre($nombre);
+        if (!empty($tipoformacion || $ingles || $pedagogia)) {
+
+            $query->tipoformacion($tipoformacion,$ingles,$pedagogia);
+        }
+        return $query->paginate();
     }
 
     public function scopeNombre($query, $nombre)
@@ -61,12 +68,29 @@ class User extends Authenticatable
 
 
     }
-    public function scopeTipoformacion($query,$tipoformacion)
+    public function scopeTipoformacion($query,$tipoformacion,$ingles,$pedagogia)
     {
+        $query->join('formacion','formacion.user','=','users.id');
         if(!empty($tipoformacion)) {
-            //$query->tipoformacion()->where('nombre', 'like', "%$tipoformacion%");
-            $query->join('formacion','formacion.user','=','users.id')
-                ->where('formacion.tipoformacion','=',$tipoformacion);
+            $query->where('formacion.tipoformacion', '=', $tipoformacion);
+                }
+        if ($ingles){
+            $query->where('formacion.ingles','=',$ingles);
+        }
+        if ($pedagogia){
+            $query->where('formacion.pedagogia','=',$pedagogia);
+        }
+
+    }
+
+    public function scopeIngles($query,$ingles, $activejoin)
+    {
+        if($ingles){
+            //$query->where('formacion.ingles','=',$ingles);
+            if ($activejoin)
+                $query->join('formacion','formacion.user','=','users.id');
+
+            $query->where('formacion.ingles','=',$ingles);
         }
     }
     

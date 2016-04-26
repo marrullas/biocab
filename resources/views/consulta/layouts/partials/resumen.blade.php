@@ -16,9 +16,38 @@
                                 {{ Form::text('nombre',$nombre,['class'=>'form-control','id'=>'nombre','placeholder'=>'Buscar por nombre...']) }}
                                 {{--<input type="text" class="form-control" name="s" id="search-input" placeholder="Buscar por nombre...">--}}
                                 <i class="entypo-search"></i>
-                                <hr>
+                            </div>
+                            <div class="form-group">
                                 {{ Form::select('tipoformacion', $tipoformacionList,$tipoformacion,['class' => 'form-control','id'=>'tipoformacion', 'placeholder'=>'Seleccione un tipo de formacion']) }}
                             </div>
+                        <div class="form-group">
+                            <div>
+                                <div class="checkbox">
+                                    <label>
+                                        @if(isset($pedagogia))
+                                            {{ Form::checkbox('pedagogia', null, $pedagogia) }} pedagogía
+                                        @else
+                                            {{ Form::checkbox('pedagogia') }} Pedagogía
+                                        @endif
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <div class="checkbox">
+                                    <label>
+                                        @if(isset($ingles))
+                                            {{ Form::checkbox('ingles',null, $ingles) }} Ingles
+                                        @else
+                                            {{ Form::checkbox('ingles') }} Ingles
+                                        @endif
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
                         <button type="submit" class="btn btn-default">Buscar</button>
                         <a class="btn btn-warning" href="{{ URL::to('/consulta/') }}">Limpiar</a>
                         {{--</form>--}}
@@ -79,3 +108,23 @@
     </div><!-- /.row -->
 
 </section><!-- /.content -->
+
+@section('custom-scripts')
+
+    {{--<script src="{{ asset('plugins/iCheck/icheck.js') }}"></script>--}}
+    <script>
+/*        $(document).ready(function(){
+            $('#pedagogia').iCheck({
+                checkboxClass: 'icheckbox_square',
+                radioClass: 'iradio_square',
+                increaseArea: '20%' // optional
+            });
+            $('#ingles').iCheck({
+                checkboxClass: 'icheckbox_square',
+                radioClass: 'iradio_square',
+                increaseArea: '20%' // optional
+            });
+        });*/
+    </script>
+
+@endsection

@@ -41,18 +41,18 @@
                 </ul>
             </li>
             <li class="treeview">
+                <a href="#"><i class='fa fa-link'></i> <span>Menu Consulta</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ url('consulta') }}">Consulta</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
                 <a href="{{ url('profile') }}"><i class='fa fa-link'></i> <span>Menu Perfil</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a href="{{ url('profile') }}">Perfil</a></li>
                     <li><a href="{{ url('bio') }}">Datos basicos</a></li>
                     <li><a href="{{ url('skill') }}">Experiencia</a></li>
                     <li><a href="{{ url('education') }}">Formación</a></li>
-                </ul>
-            </li>
-            <li class="treeview">
-                <a href="#"><i class='fa fa-link'></i> <span>Menu</span> <i class="fa fa-angle-left pull-right"></i></a>
-                <ul class="treeview-menu">
-                    <li><a href="{{ url('consulta') }}">Consulta</a></li>
                 </ul>
             </li>
         </ul><!-- /.sidebar-menu -->
