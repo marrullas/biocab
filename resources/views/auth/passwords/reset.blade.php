@@ -1,4 +1,4 @@
-@extends('layouts.aut   h')
+@extends('layouts.auth')
 
 @section('htmlheader_title')
     Password reset
@@ -9,7 +9,7 @@
     <body class="login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="{{ url('/home') }}"><b>Admin</b>LTE</a>
+            <a href="{{ url('/home') }}"><b>Bio</b>CAB</a>
         </div><!-- /.login-logo -->
 
         @if (session('status'))
@@ -30,7 +30,7 @@
         @endif
 
         <div class="login-box-body">
-            <p class="login-box-msg">Reset Password</p>
+            <p class="login-box-msg">Resetear Password</p>
             <form action="{{ url('/password/reset') }}" method="post">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="token" value="{{ $token }}">
@@ -53,15 +53,15 @@
                     <div class="col-xs-2">
                     </div><!-- /.col -->
                     <div class="col-xs-8">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">Reset password</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Restablecer password</button>
                     </div><!-- /.col -->
                     <div class="col-xs-2">
                     </div><!-- /.col -->
                 </div>
             </form>
 
-            <a href="{{ url('/login') }}">Log in</a><br>
-            <a href="{{ url('/register') }}" class="text-center">Register a new membership</a>
+            <a href="{{ url('/login') }}">Ingresar</a><br>
+            <a href="{{ url('/register') }}" class="text-center">Registrase como nuevo usuario</a>
 
         </div><!-- /.login-box-body -->
 
