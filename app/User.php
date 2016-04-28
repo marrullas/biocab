@@ -61,9 +61,9 @@ class User extends Authenticatable
             ->ingles($ingles)
             ->paginate();*/
         $user = User::nombre($nombre)
-            ->tipoformacion()
+            ->tipoformacion($tipoformacion,$ingles,$pedagogia)
             ->paginate();
-        dd($user);
+        //dd($user);
         return $user;
         return User::with('formacion')
             ->nombre($nombre)
@@ -84,41 +84,25 @@ class User extends Authenticatable
 
 
     }
-/*    public function scopeTipoformacion($query,$tipoformacion,$ingles,$pedagogia)
+
+    public function scopeTipoformacion($query,$tipoformacion,$ingles,$pedagogia)
     {
-        $query->join('formacion','formacion.user','=','users.id');
-        if(!empty($tipoformacion)) {
-            $query->where('formacion.tipoformacion', '=', $tipoformacion);
+        if (!empty($tipoformacion || $ingles || $pedagogia)) {
+            return $query->whereIn('users.id', function ($q) use ($tipoformacion, $ingles, $pedagogia) {
+                $q->select('formacion.user')
+                    ->from('formacion');
+                if (!empty($tipoformacion)) {
+                    $q->where('formacion.tipoformacion', '=', $tipoformacion);
                 }
-        if ($ingles){
-            //$query->where('formacion.ingles','=',$ingles);
+                if ($ingles)
+                    $q->where('formacion.ingles', 1);
 
-            $query->formacion()->hasIngles();
-        }
-        if ($pedagogia){
-            $query->where('formacion.pedagogia','=',$pedagogia);
-        }
-
-    }*/
-    public function scopeTipoformacion($query)
-    {
-        return $query->whereIn('users.id',function($q){
-            $q->select('formacion.user')
-                ->from('formacion')
-                ->where('formacion.ingles',1);
-        });
-            }
-    public function scopeIngles($query,$ingles, $activejoin)
-    {
-        return $query->where('formacion.ingles',1);
-        if($ingles){
-            //$query->where('formacion.ingles','=',$ingles);
-            if ($activejoin)
-                $query->join('formacion','formacion.user','=','users.id');
-
-            $query->where('formacion.ingles','=',$ingles);
+                if ($pedagogia)
+                    $q->where('formacion.pedagogia', 1);
+            });
         }
     }
+
 
     public function hasIngles()
     {

@@ -27,16 +27,12 @@ class ConsultaController extends Controller
     public function index()
     {
 
-        //dd(Auth::user()->tipouser->nombre);
-        //dd(request()->all());
         $ingles = (Input::has('ingles')) ? true : false;
         $pedagogia = (Input::has('pedagogia')) ? true : false;
-        //dd($ingles);
         $nombre = request()->get('nombre');
         $tipoformacion =  request()->get('tipoformacion');
         $page =  request()->get('page');
         $userslist = User::filtroPaginación($nombre,$tipoformacion,$ingles,$pedagogia);
-        dd($userslist[0]->hasIngles());
         $bio = Bio::where('user','=',Auth::user()->id)->get()->first();
         if($bio == null) {
             $bio = array();
