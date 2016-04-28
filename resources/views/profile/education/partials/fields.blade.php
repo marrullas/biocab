@@ -7,7 +7,7 @@
         <label for="inputName" class="control-label">Titulo</label>
         <div>
             {{--<input type="text" class="form-control" id="identificacion" name="identificacion" placeholder="Identificación">--}}
-            {!! Form::text('titulo', null, [ 'class' => 'form-control', 'placeholder' => 'Digite titulo obtenido' ] ) !!}
+            {!! Form::text('titulo', null, [ 'class' => 'form-control', 'placeholder' => 'Digite titulo obtenido', 'required' ] ) !!}
         </div>
     </div>
     <div class="form-group">
@@ -19,13 +19,13 @@
     <div class="form-group">
         <label for="inputName" class="control-label">Institucion educativa</label>
         <div>
-            {!! Form::text('institucion', null, [ 'class' => 'form-control', 'placeholder' => 'Digite IE' ] ) !!}
+            {!! Form::text('institucion', null, [ 'class' => 'form-control', 'placeholder' => 'Digite IE', 'required' ] ) !!}
         </div>
     </div>
     <div class="form-group">
         <label for="inputName" class="control-label">Tipo Formación</label>
         <div>
-            {{ Form::select('tipoformacion', $tipoformacion,null,['class' => 'form-control','id'=>'tipoformacion', 'placeholder'=>'seleccione tipo formacion']) }}
+            {{ Form::select('tipoformacion', $tipoformacion,null,['class' => 'form-control','id'=>'tipoformacion', 'placeholder'=>'seleccione tipo formacion','required']) }}
         </div>
     </div>
 
@@ -143,12 +143,18 @@
             @endif
         @endif
         <div>
-            {!! Form::file('archivo','',[ 'class' => 'form-control', 'placeholder' => 'Documento evidencia' ]) !!}
+            {!! Form::file('archivo',[ 'class' => 'form-control', 'placeholder' => 'Documento evidencia','data-parsley-max-file-size'=>"1000" ]) !!}
+{{--            <div class="dz-message">
+                <center> <h4>Drag Photos to Upload</h4>
+                <span>Or click to browse</span>
+                </center>
+            </div>
+            <div class="dropzone-previews"></div>--}}
         </div>
     </div>
     <div class="form-group">
         <div class="panel">
-            <button type="submit" class="btn btn-success">Guardar</button>
+            <button type="submit" class="btn btn-success" id="submit">Guardar</button>
 
             <a href="{{url('/education')}}" type="cancel" class="btn btn-info pull-right">Volver sin guardar</a>
         </div>
@@ -165,6 +171,28 @@
     <script src="{{ asset('plugins/datepicker/locales/bootstrap-datepicker.es.js') }}" type="text/javascript"></script>
     <script language="JavaScript">
         $(document).ready(function () {
+
+            $('#formeducation').parsley();
+
+            window.Parsley.addValidator('maxFileSize', {
+
+                validateString: function(_value, maxSize, parsleyInstance) {
+                    if (!window.FormData) {
+                        alert('You are making all developpers in the world cringe. Upgrade your browser!');
+                        return true;
+                    }
+                    var files = parsleyInstance.$element[0].files;
+                    return files.length != 1  || files[0].size <= maxSize * 1024;
+                },
+                requirementType: 'integer',
+                messages: {
+                    en: 'This file should not be larger than %s Kb',
+                    es: 'Este archivo no puede ser de mas de %s Kb',
+                    fr: "Ce fichier est plus grand que %s Kb."
+                }
+            });
+
+
             $('.datepicker').datepicker({
                 format: 'dd/mm/yyyy',
                 autoclose: true,
@@ -241,7 +269,7 @@
                 @if(!isset($educa))
                     $('#divloading').hide();
                 @else
-                if(flagregion == true && flagregion2 == true && flagregion3 == true )
+                if(flagregion == true)
                     $('#divloading').hide();
                 @endif
             });

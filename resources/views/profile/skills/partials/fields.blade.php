@@ -7,7 +7,7 @@
                             <label for="inputName" class="control-label">Empresa</label>
                             <div>
                                 {{--<input type="text" class="form-control" id="identificacion" name="identificacion" placeholder="Identificación">--}}
-                                {!! Form::text('empresa', null, [ 'class' => 'form-control', 'placeholder' => 'Digite empresa' ] ) !!}
+                                {!! Form::text('empresa', null, [ 'class' => 'form-control', 'placeholder' => 'Digite empresa', 'required' ] ) !!}
                             </div>
                         </div>
                         <div class="form-group">
@@ -15,7 +15,7 @@
                             <label for="inputName" class="control-label">Cargo</label>
                             <div>
                                 {{--<input type="text" class="form-control" id="identificacion" name="identificacion" placeholder="Identificación">--}}
-                                {!! Form::text('cargo', null, [ 'class' => 'form-control', 'placeholder' => 'Digite Cargo' ] ) !!}
+                                {!! Form::text('cargo', null, [ 'class' => 'form-control', 'placeholder' => 'Digite Cargo', 'required' ] ) !!}
                             </div>
                         </div>
                         <div class="form-group">
@@ -66,7 +66,7 @@
                         <div class="form-group">
                             <label for="inputName" class="control-label">Fecha Ingreso</label>
                             <div>
-                                {!! Form::text('fechaingreso', null, [ 'class' => 'form-control datepicker', 'placeholder' => 'Fecha ingreso','id'=>'fechaingreso', 'data-provide'=>'datepicker'  ] ) !!}
+                                {!! Form::text('fechaingreso', null, [ 'class' => 'form-control datepicker', 'placeholder' => 'Fecha ingreso','id'=>'fechaingreso', 'data-provide'=>'datepicker', 'required'  ] ) !!}
                             </div>
                         </div>
                         <div class="form-group">
@@ -106,7 +106,7 @@
                                 @endif
                             @endif
                             <div>
-                                {!! Form::file('archivo','',[ 'class' => 'form-control', 'placeholder' => 'Documento evidencia' ]) !!}
+                                {!! Form::file('archivo',[ 'class' => 'form-control', 'placeholder' => 'Documento evidencia', 'data-parsley-max-file-size'=>"1000"]) !!}
                             </div>
                         </div>
                         <div class="form-group">
@@ -128,6 +128,25 @@
     <script src="{{ asset('plugins/datepicker/locales/bootstrap-datepicker.es.js') }}" type="text/javascript"></script>
     <script language="JavaScript">
         $(document).ready(function () {
+
+            $('#formeskill').parsley();
+            window.Parsley.addValidator('maxFileSize', {
+
+                validateString: function(_value, maxSize, parsleyInstance) {
+                    if (!window.FormData) {
+                        alert('You are making all developpers in the world cringe. Upgrade your browser!');
+                        return true;
+                    }
+                    var files = parsleyInstance.$element[0].files;
+                    return files.length != 1  || files[0].size <= maxSize * 1024;
+                },
+                requirementType: 'integer',
+                messages: {
+                    en: 'This file should not be larger than %s Kb',
+                    es: 'Este archivo no puede ser de mas de %s Kb',
+                    fr: "Ce fichier est plus grand que %s Kb."
+                }
+            });
             $('.datepicker').datepicker({
                 format: 'dd/mm/yyyy',
                 autoclose: true,
@@ -205,7 +224,7 @@
                 @if(!isset($skill))
                     $('#divloading').hide();
                 @else
-                    if(flagregion == true && flagregion2 == true && flagregion3 == true )
+                    if(flagregion == true)
                     $('#divloading').hide();
                 @endif
             });

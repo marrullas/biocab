@@ -7,7 +7,7 @@
                             <label for="inputName" class="control-label">Identificación</label>
                             <div>
                                 {{--<input type="text" class="form-control" id="identificacion" name="identificacion" placeholder="Identificación">--}}
-                                {!! Form::text('identificacion', null, [ 'class' => 'form-control', 'placeholder' => 'Digite identificación' ] ) !!}
+                                {!! Form::text('identificacion', null, [ 'class' => 'form-control', 'placeholder' => 'Digite identificación', 'required' ] ) !!}
                             </div>
                         </div>
                         <div class="form-group">
@@ -21,7 +21,7 @@
                                     @endif
                             @endif
                             <div>
-                                {!! Form::file('imagendocumento','',[ 'class' => 'form-control', 'placeholder' => 'Imagen documento' ]) !!}
+                                {!! Form::file('imagendocumento',[ 'class' => 'form-control', 'placeholder' => 'Imagen documento','data-parsley-max-file-size'=>"1000" ]) !!}
                             </div>
                         </div>
                         <div class="form-group">
@@ -50,19 +50,20 @@
                         <div class="form-group">
                             <label for="inputName" class="control-label">Ciudad de Expedición</label>
                             <div>
-                                {{ Form::select('lugarexp',[], null,['class' => 'form-control','id'=>'lugarexp']) }}
+                                {{ Form::select('lugarexp',[], null,['class' => 'form-control','id'=>'lugarexp', 'required']) }}
                             </div>
                         </div>
                         <div class="form-group">
 
                             <label for="inputName" class="control-label">Sexo</label>
                             <div>
-                                {{ Form::select('sexo', ['M'=>'Masculino','F'=>'Femenino','Otro'=>'Otro'],null,['class' => 'form-control','id'=>'sexo', 'placeholder'=>'seleccione sexo']) }}                            </div>
+                                {{ Form::select('sexo', ['M'=>'Masculino','F'=>'Femenino','Otro'=>'Otro'],null,['class' => 'form-control','id'=>'sexo', 'placeholder'=>'seleccione sexo', 'required' ]) }}
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="inputName" class="control-label">Fecha de nacimiento (dd/mm/aaaa) Ej. (10/03/1970)</label>
                             <div>
-                                {!! Form::text('fechanacimiento', null, [ 'class' => 'form-control datepicker', 'placeholder' => 'Fecha Nacimiento','id'=>'fechanacimiento' ] ) !!}
+                                {!! Form::text('fechanacimiento', null, [ 'class' => 'form-control datepicker', 'placeholder' => 'Fecha Nacimiento','id'=>'fechanacimiento', 'required' ] ) !!}
                             </div>
                         </div>
                         <div class="form-group">
@@ -84,7 +85,7 @@
                         <div class="form-group">
                             <label for="inputName" class="control-label">Ciudad de nacimiento</label>
                             <div>
-                                {{ Form::select('ciudadnacimiento', [],null,['class' => 'form-control','id'=>'ciudadnacimiento']) }}
+                                {{ Form::select('ciudadnacimiento', [],null,['class' => 'form-control','id'=>'ciudadnacimiento', 'required']) }}
                             </div>
                         </div>
                     </div>
@@ -92,19 +93,19 @@
                         <div class="form-group">
                             <label for="inputEmail" class="control-label">Correo SENA</label>
                             <div>
-                                {!! Form::email('correosena', null, [ 'class' => 'form-control', 'placeholder' => 'Digite correo sena.edu.co' ] ) !!}
+                                {!! Form::email('correosena', null, [ 'class' => 'form-control', 'placeholder' => 'Digite correo sena.edu.co', 'required' ] ) !!}
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputName" class="control-label">Correo personal</label>
                             <div>
-                                {!! Form::email('correopersonal', null, [ 'class' => 'form-control', 'placeholder' => 'Digite correosena' ] ) !!}
+                                {!! Form::email('correopersonal', null, [ 'class' => 'form-control', 'placeholder' => 'Digite correosena', 'required' ] ) !!}
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputName" class="control-label">Telefono contacto</label>
                             <div>
-                                {!! Form::text('telefono', null, [ 'class' => 'form-control', 'placeholder' => 'Digite telefono' ] ) !!}
+                                {!! Form::text('telefono', null, [ 'class' => 'form-control', 'placeholder' => 'Digite telefono', 'required' ] ) !!}
                             </div>
                         </div>
                         <div class="form-group">
@@ -132,7 +133,7 @@
                         <div class="form-group">
                             <label for="inputName" class="control-label">Ciudad de residencia</label>
                             <div>
-                                {{ Form::select('ciudad', array(' '=>'Seleccionar lugar de nacimiento'),null,['class' => 'form-control','id'=>'ciudad']) }}
+                                {{ Form::select('ciudad', array(' '=>'Seleccionar lugar de nacimiento'),null,['class' => 'form-control','id'=>'ciudad', 'required']) }}
                             </div>
                         </div>
 
@@ -141,31 +142,31 @@
                         <div class="form-group">
                             <label for="inputName" class="control-label">Dirección</label>
                             <div>
-                                {!! Form::text('direccion', null, [ 'class' => 'form-control', 'placeholder' => 'Digite direccion' ] ) !!}
+                                {!! Form::text('direccion', null, [ 'class' => 'form-control', 'placeholder' => 'Digite direccion', 'required' ] ) !!}
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputName" class="control-label">Dependencia/Area</label>
                             <div>
-                                {{ Form::select('dependencia', $dependencias,null,['class' => 'form-control','id'=>'dependencia', 'placeholder'=>'seleccione Area/Dependencia']) }}
+                                {{ Form::select('dependencia', $dependencias,null,['class' => 'form-control','id'=>'dependencia', 'placeholder'=>'seleccione Area/Dependencia', 'required']) }}
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputName" class="control-label">Centro</label>
                             <div>
-                                {{ Form::select('centro', $centros,null,['class' => 'form-control','id'=>'centro', 'placeholder'=>'seleccione Centro/empresa']) }}
+                                {{ Form::select('centro', $centros,null,['class' => 'form-control','id'=>'centro', 'placeholder'=>'seleccione Centro/empresa', 'required']) }}
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputName" class="control-label">banco</label>
                             <div>
-                                {{ Form::select('banco', $bancos,null,['class' => 'form-control','id'=>'banco', 'placeholder'=>'seleccione banco']) }}
+                                {{ Form::select('banco', $bancos,null,['class' => 'form-control','id'=>'banco', 'placeholder'=>'seleccione banco', 'required']) }}
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputName" class="control-label">Numero cuenta</label>
                             <div>
-                                {!! Form::text('numerocuenta', null, [ 'class' => 'form-control', 'placeholder' => 'Digite numero de cuenta' ] ) !!}
+                                {!! Form::text('numerocuenta', null, [ 'class' => 'form-control', 'placeholder' => 'Digite numero de cuenta', 'required' ] ) !!}
                             </div>
                         </div>
                         <div class="form-group">
@@ -211,6 +212,26 @@
     <script src="{{ asset('plugins/datepicker/locales/bootstrap-datepicker.es.js') }}" type="text/javascript"></script>
     <script language="JavaScript">
         $(document).ready(function () {
+
+            $('#formbio').parsley();
+            window.Parsley.addValidator('maxFileSize', {
+
+                validateString: function(_value, maxSize, parsleyInstance) {
+                    if (!window.FormData) {
+                        alert('You are making all developpers in the world cringe. Upgrade your browser!');
+                        return true;
+                    }
+                    var files = parsleyInstance.$element[0].files;
+                    return files.length != 1  || files[0].size <= maxSize * 1024;
+                },
+                requirementType: 'integer',
+                messages: {
+                    en: 'This file should not be larger than %s Kb',
+                    es: 'Este archivo no puede ser de mas de %s Kb',
+                    fr: "Ce fichier est plus grand que %s Kb."
+                }
+            });
+
             var flagregion = true;
             var flagregion2 = true;
             var flagregion3 = true;

@@ -29,7 +29,7 @@
 								</ul>
 							</div>
 						@endif
-					{!! Form::open(array('route' => 'skill.store','method'=>'post','files' => true)) !!}
+					{!! Form::open(array('route' => 'skill.store','method'=>'post','files' => true,'id'=>'formeskill')) !!}
 					@include('profile.skills.partials.fields')
 					{!! Form::close() !!}
 					</div><!-- .boxbody-->

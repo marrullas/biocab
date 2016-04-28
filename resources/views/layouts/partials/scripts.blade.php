@@ -11,3 +11,6 @@
       Both of these plugins are recommended to enhance the
       user experience. Slimscroll is required when using the
       fixed layout. -->
+
+<script src="{{ asset('js/parsley/parsley.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/parsley/es.js') }}" type="text/javascript"></script>
