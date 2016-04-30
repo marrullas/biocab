@@ -106,7 +106,7 @@
                                 @endif
                             @endif
                             <div>
-                                {!! Form::file('archivo',[ 'class' => 'form-control', 'placeholder' => 'Documento evidencia', 'data-parsley-max-file-size'=>"1000"]) !!}
+                                {!! Form::file('archivo',[ 'class' => 'form-control', 'placeholder' => 'Documento evidencia', 'data-parsley-max-file-size'=>"2000"]) !!}
                             </div>
                         </div>
                         <div class="form-group">
