@@ -78,9 +78,9 @@ class ExperienciaController extends Controller
 
         $skill->user = Auth::user()->id;
         if(isset($data['archivo'])) {
-            $imageName = Auth::user()->id . '_' . $data['empresa'] .str_random(8).'.' .
+            $imageName = Auth::user()->id . '_' . substr($data['empresa'], 0, 16) .str_random(8).'.' .
                 $request->file('archivo')->getClientOriginalExtension();
-
+            $imageName = str_replace(' ','',$imageName);
             $request->file('archivo')->move(
                 base_path() . '/public/images/exp/', $imageName
             );
@@ -148,9 +148,9 @@ class ExperienciaController extends Controller
         $data = $request->all();
         $skill->fill($data);
         if(isset($data['archivo'])) {
-            $imageName = Auth::user()->id . '_' . $data['empresa'] .str_random(8).'.' .
+            $imageName = Auth::user()->id . '_' . substr($data['empresa'], 0, 16) .str_random(8).'.' .
                 $request->file('archivo')->getClientOriginalExtension();
-
+            $imageName = str_replace(' ','',$imageName);
             $request->file('archivo')->move(
                 base_path() . '/public/images/exp/', $imageName
             );

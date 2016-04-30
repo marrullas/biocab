@@ -76,9 +76,9 @@ class FormacionController extends Controller
         $educa =  new Formacion($data);
         $educa->user = Auth::user()->id;
         if(isset($data['archivo'])) {
-            $imageName = Auth::user()->id . '_' .  preg_replace('/\s+/', '', $data['titulo']) .str_random(8).'.' .
+            $imageName = Auth::user()->id . '_' .  preg_replace('/\s+/', '', substr($data['titulo'], 0, 16)) .str_random(8).'.' .
                 $request->file('archivo')->getClientOriginalExtension();
-
+            $imageName = str_replace(' ','',$imageName);
             $request->file('archivo')->move(
                 base_path() . '/public/images/edu/', $imageName
             );
@@ -149,9 +149,9 @@ class FormacionController extends Controller
         $data = $request->all();
         $educa->fill($data);
         if(isset($data['archivo'])) {
-            $imageName = Auth::user()->id . '_' . preg_replace('/\s+/', '', $data['titulo']) .str_random(8).'.' .
+            $imageName = Auth::user()->id . '_' . preg_replace('/\s+/', '', substr($data['titulo'], 0, 16)) .str_random(8).'.' .
                 $request->file('archivo')->getClientOriginalExtension();
-
+            $imageName = str_replace(' ','',$imageName);
             $request->file('archivo')->move(
                 base_path() . '/public/images/edu/', $imageName
             );

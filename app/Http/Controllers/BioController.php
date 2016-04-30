@@ -111,7 +111,7 @@ class BioController extends Controller
         if(isset($data['imagendocumento'])) {
             $imageName = $data['identificacion'] . '.' .
                 $request->file('imagendocumento')->getClientOriginalExtension();
-
+            $imageName = str_replace(' ','',$imageName);
             $request->file('imagendocumento')->move(
                 base_path() . '/public/images/docs/', $imageName
             );
