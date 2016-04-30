@@ -97,7 +97,7 @@
                                 </div>
                             </div>
                         <div class="form-group">
-                            <label for="inputName" class="control-label">Evidencia/Carta laboral (Imagen o pdf / Maximo 1000kb)</label>
+                            <label for="inputName" class="control-label">Evidencia/Carta laboral (Imagen o pdf / Maximo 2000kb)</label>
                             @if(isset($skill))
                                 @if($skill['archivo'])
                                     <div>
@@ -106,7 +106,7 @@
                                 @endif
                             @endif
                             <div>
-                                {!! Form::file('archivo',[ 'class' => 'form-control', 'placeholder' => 'Documento evidencia', 'data-parsley-max-file-size'=>"10000"]) !!}
+                                {!! Form::file('archivo',[ 'class' => 'form-control', 'placeholder' => 'Documento evidencia', 'data-parsley-max-file-size'=>"2000"]) !!}
                             </div>
                         </div>
                         <div class="form-group">
